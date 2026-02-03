@@ -1,10 +1,12 @@
+import Link from 'next/link'
+
 export default function TechStack() {
   return (
     <div className="card">
       <div className="card-header">
         <span className="card-header-icon">⚡</span>
         Tech Stack
-        <a href="#" className="view-all">View All &gt;</a>
+        <Link href="/tech-stack" className="view-all">View All &gt;</Link>
       </div>
       <div className="tech-category">
         <h4>Frontend</h4>
@@ -36,7 +38,7 @@ export default function TechStack() {
           <span className="tag">Redis</span>
         </div>
       </div>
-            <div className="tech-category">
+      <div className="tech-category">
         <h4>Tools & DevOps</h4>
         <div className="tech-tags">
           <span className="tag">Git</span>

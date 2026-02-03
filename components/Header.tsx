@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import { useState } from 'react'
-import ThemeToggle from './ThemeToggle'
+import Image from "next/image";
+import { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-  const [hovered, setHovered] = useState(false)
+  const [hovered, setHovered] = useState(false);
 
   return (
     <header>
@@ -21,14 +21,14 @@ export default function Header() {
               alt="Profile"
               width={175}
               height={175}
-              className={`profile-pic main ${hovered ? 'hidden' : 'visible'}`}
+              className={`profile-pic main ${hovered ? "hidden" : "visible"}`}
             />
             <Image
               src="/images/profile_back.jpg"
               alt="Profile Hover"
               width={175}
               height={175}
-              className={`profile-pic hover ${hovered ? 'visible' : 'hidden'}`}
+              className={`profile-pic hover ${hovered ? "visible" : "hidden"}`}
             />
           </div>
 
@@ -39,15 +39,37 @@ export default function Header() {
               <ThemeToggle />
             </h1>
             <p className="location">📍 Baliuag City, Bulacan, Philippines</p>
-            <p className="tagline">Aspiring Full Stack Developer | Backend Developer</p>
+            <p className="tagline">
+              Aspiring Full Stack Developer | Backend Developer
+            </p>
             <div className="header-buttons">
-              <a href="#" className="btn" target="_blank">📅 Schedule a Call</a>
-              <a href="mailto:your.email@example.com" className="btn">✉️ Send Email</a>
-              <a href="mailto:your.email@example.com" className="btn">✉ View my CV</a>
+              <a
+                href="https://calendly.com/emmandelapena755"
+                className="btn"
+                target="_blank"
+              >
+                📅 Schedule a Call
+              </a>
+
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=emmandelapena755@gmail.com"
+                className="btn"
+                target="_blank"
+              >
+                ✉️ Send Email
+              </a>
+
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=your.email@example.com&su=CV Request&body=Hi Emmanuel,"
+                className="btn"
+                target="_blank"
+              >
+                ✉ View my CV
+              </a>
             </div>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }

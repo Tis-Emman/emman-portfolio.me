@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
@@ -31,7 +32,9 @@ export default function Certifications() {
       <div className="card-header">
         <span className="card-header-icon">📜</span>
         Certifications
-        <a href="#" className="view-all">View All &gt;</a>
+        <Link href="/certifications" className="view-all">
+          View All &gt;
+        </Link>
       </div>
 
       <div className="cert-grid">

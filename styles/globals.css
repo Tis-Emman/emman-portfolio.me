@@ -570,37 +570,70 @@ header .container {
 /* Footer */
 footer {
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 0;
   color: var(--text-secondary);
   font-size: 0.85rem;
   border-top: 1px solid var(--border-color);
-  margin-top: 3rem;
 }
 
 /* Chat Button */
 .chat-button {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  bottom: 1.5rem;        /* slightly higher */
+  right: 1.5rem;         /* slightly inward */
+  min-width: 50px;        /* smaller width */
+  height: 50px;           /* smaller height */
+  padding: 0 1rem;        /* reduced padding */
+  border-radius: 25px;    /* maintain roundness */
   background: #000000;
   color: #ffffff;
-  border: none;
+  border: 2px solid #ffffff;
   cursor: pointer;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;      /* smaller font */
+  font-weight: 600;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2); /* smaller shadow */
   transition: all 0.3s ease;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
 }
 
 .chat-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  background: #ffffff;
+  color: #000000;
+  border-color: #000000;
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide text on smaller screens to show icon only */
+@media (max-width: 480px) {
+  .chat-button {
+    min-width: 50px;
+    height: 50px;
+    padding: 0;
+  }
+  
+  .chat-button-text {
+    display: none;
+  }
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .chat-button {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+[data-theme="light"] .chat-button:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 /* Chat Widget */
@@ -759,9 +792,14 @@ footer {
 }
 
 .chat-message.user .message-bubble {
-  background: var(--accent-cyan);
-  color: var(--bg-primary);
+  background: #000000;
+  color: #ffffff;
   border-bottom-right-radius: 4px;
+}
+
+[data-theme="light"] .chat-message.user .message-bubble {
+  background: #000000;
+  color: #ffffff;
 }
 
 /* Chat Input */
@@ -789,8 +827,12 @@ footer {
 }
 
 .chat-input:focus {
-  border-color: var(--accent-cyan);
+  border-color: #000000;
   background: var(--bg-card);
+}
+
+[data-theme="light"] .chat-input:focus {
+  border-color: #000000;
 }
 
 .chat-input::placeholder {
@@ -801,8 +843,8 @@ footer {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--accent-cyan);
-  color: var(--bg-primary);
+  background: #000000;
+  color: #ffffff;
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
@@ -815,7 +857,16 @@ footer {
 
 .chat-send-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.chat-send-btn:active {
+  transform: scale(0.95);
+}
+
+[data-theme="light"] .chat-send-btn {
+  background: #000000;
+  color: #ffffff;
 }
 
 .chat-send-btn:active {
@@ -1094,5 +1145,310 @@ footer {
 
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   TECH STACK PAGE STYLES (POLISHED)
+   ============================================ */
+.tech-stack-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+}
+
+.tech-stack-content {
+  flex: 1; /* fills space above footer */
+  padding-bottom: 2rem; /* optional spacing from footer */
+}
+
+.tech-stack-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+.back-button {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: var(--accent-cyan);
+}
+
+.header-content-stack {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.header-content-stack h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Syne', sans-serif;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.tech-stack-category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease;
+}
+
+.tech-stack-category-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.category-icon {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.category-icon-svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.tech-stack-category-card:hover .category-icon,
+.tech-stack-category-card:hover .category-icon-svg {
+  color: var(--accent-cyan);
+}
+
+.category-header h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  margin: 0;
+}
+
+.tech-tags-full {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tech-tag-full {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  transition: all 0.3s ease;
+  cursor: default;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.tech-tag-full:hover {
+  background: var(--border-color);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  transform: translateY(-2px);
+}
+
+/* Responsive for Tech Stack */
+@media (max-width: 1024px) {
+  .tech-stack-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-content-stack {
+    flex-direction: column;
+  }
+  
+  .header-content-stack h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-stack-header {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .header-content-stack h1 {
+    font-size: 1.2rem;
+  }
+  
+  .tech-stack-category-card {
+    padding: 1.2rem;
+  }
+  
+  .category-header h2 {
+    font-size: 0.8rem;
+  }
+  
+  .tech-tag-full {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* ============================================
+   CERTIFICATIONS PAGE STYLES
+   ============================================ */
+.certifications-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+.certifications-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+.header-content-certs {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.header-content-certs h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Syne', sans-serif;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.certification-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: fadeInUp 0.6s ease;
+}
+
+.certification-card:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.cert-image-wrapper {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cert-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.certification-card:hover .cert-image {
+  transform: scale(1.05);
+}
+
+.cert-info {
+  padding: 1.2rem;
+}
+
+.cert-info h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Syne', sans-serif;
+  color: var(--text-primary);
+}
+
+.cert-provider-year {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+/* Responsive for Certifications */
+@media (max-width: 1024px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-content-certs {
+    flex-direction: column;
+  }
+  
+  .header-content-certs h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .certifications-header {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .header-content-certs h1 {
+    font-size: 1.2rem;
+  }
+  
+  .cert-image-wrapper {
+    height: 220px;
+  }
+  
+  .cert-info h3 {
+    font-size: 0.85rem;
+  }
+  
+  .cert-provider-year {
+    font-size: 0.7rem;
   }
 }
