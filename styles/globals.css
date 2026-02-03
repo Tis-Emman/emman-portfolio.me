@@ -1326,9 +1326,18 @@ footer {
 /* ============================================
    CERTIFICATIONS PAGE STYLES
    ============================================ */
+/* ============================================
+   CERTIFICATIONS PAGE STYLES
+   ============================================ */
 .certifications-page {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  padding-bottom: 4rem;
+}
+
+.certifications-content {
+  flex: 1;
+  padding-bottom: 2rem;
 }
 
 .certifications-header {

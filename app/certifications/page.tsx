@@ -31,40 +31,43 @@ export default function CertificationsPage() {
 
   return (
     <div className="certifications-page">
-      {/* Header */}
-      <div className="certifications-header">
-        <div className="container">
-          <Link href="/" className="back-button">
-            ← Back to Home
-          </Link>
-          
-          <div className="header-content-certs">
-            <div>
-              <h1>Certifications</h1>
-              <p className="subtitle">Professional credentials and specialized training in AWS and Python.</p>
+      {/* Main content area */}
+      <div className="certifications-content">
+        {/* Header */}
+        <div className="certifications-header">
+          <div className="container">
+            <Link href="/" className="back-button">
+              ← Back to Home
+            </Link>
+            
+            <div className="header-content-certs">
+              <div>
+                <h1>Certifications</h1>
+                <p className="subtitle">Professional credentials and specialized training in AWS and Python.</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Certifications Grid */}
-      <div className="container">
-        <div className="certifications-grid">
-          {certifications.map((cert, idx) => (
-            <div
-              key={idx}
-              className="certification-card"
-              onClick={() => setSelectedCert(cert.img)}
-            >
-              <div className="cert-image-wrapper">
-                <img src={cert.img} alt={cert.name} className="cert-image" />
+        {/* Certifications Grid */}
+        <div className="container">
+          <div className="certifications-grid">
+            {certifications.map((cert, idx) => (
+              <div
+                key={idx}
+                className="certification-card"
+                onClick={() => setSelectedCert(cert.img)}
+              >
+                <div className="cert-image-wrapper">
+                  <img src={cert.img} alt={cert.name} className="cert-image" />
+                </div>
+                <div className="cert-info">
+                  <h3>{cert.name}</h3>
+                  <p className="cert-provider-year">{cert.provider} • {cert.year}</p>
+                </div>
               </div>
-              <div className="cert-info">
-                <h3>{cert.name}</h3>
-                <p className="cert-provider-year">{cert.provider} • {cert.year}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
@@ -82,6 +85,12 @@ export default function CertificationsPage() {
           </div>
         </div>
       )}
+
+      {/* Footer */}
+      <footer>
+        <p>&copy; 2026 Emmanuel Dela Pena. All Rights Reserved.</p>
+        <p>Developed in Baliuag City, Bulacan, Philippines</p>
+      </footer>
     </div>
   )
 }
