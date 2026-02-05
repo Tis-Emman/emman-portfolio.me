@@ -20,24 +20,8 @@ Outside of work, I recharge by playing guitar, coding personal projects, and coo
         </div>
         <div className="hobby-card">
           <Image
-            src="https://via.placeholder.com/300x200/111111/00ffff?text=Hobby+2"
+            src="/images/hobby_2.png"
             alt="Hobby 2"
-            width={300}
-            height={200}
-          />
-        </div>
-        <div className="hobby-card">
-          <Image
-            src="https://via.placeholder.com/300x200/111111/00ffff?text=Hobby+3"
-            alt="Hobby 3"
-            width={300}
-            height={200}
-          />
-        </div>
-        <div className="hobby-card">
-          <Image
-            src="https://via.placeholder.com/300x200/111111/00ffff?text=Hobby+4"
-            alt="Hobby 4"
             width={300}
             height={200}
           />
