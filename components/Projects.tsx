@@ -1,56 +1,80 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Projects() {
   return (
-    <div>
-      <div className="projects-header">
-        <h2>Projects</h2>
-        <a href="#" className="view-all">View All &gt;</a>
+    <section className="projects-section">
+      <div className="container">
+        <div className="projects-header">
+          <h2>Projects</h2>
+          <Link href="/projects" className="view-all">
+            View All
+            <span> →</span>
+          </Link>
+        </div>
+        
+        <div className="projects-grid">
+          {/* Project Card 1: Cozy Crate E-Commerce */}
+          <div className="project-card">
+            <Image
+              src="/images/cozy-crate.png"
+              alt="Cozy Crate E-Commerce"
+              width={600}
+              height={400}
+              className="project-image"
+            />
+            <div className="project-content">
+              <h3>Cozy Crate E-Commerce</h3>
+              <p className="project-description">
+                A Java GUI Swing Program that uses SQLITE database for CRUD operations
+              </p>
+              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
+                View Project
+              </a>
+            </div>
+          </div>
+
+          {/* Project Card 2: E Tour Travels */}
+          <div className="project-card">
+            <Image
+              src="/images/e-tour-travels.png"
+              alt="E Tour Travels" 
+              width={600}
+              height={400}
+              className="project-image"
+            />
+            <div className="project-content">
+              <h3>E Tour Travels</h3>
+              <p className="project-description">
+                A static website for our first year, first sem project
+              </p>
+              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
+                View Project
+              </a>
+            </div>
+          </div>
+
+          {/* Project Card 3: Sinervet VetHub */}
+          <div className="project-card">
+            <Image
+              src="/images/sinervet.png"
+              alt="Sinervet VetHub" 
+              width={600}
+              height={400}
+              className="project-image"
+            />
+            <div className="project-content">
+              <h3>Sinervet VetHub</h3>
+              <p className="project-description">
+                A website for veterinary at local town
+              </p>
+              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
+                View Project
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="projects-grid">
-        <div className="project-card">
-          <Image
-            src="/images/cozy-crate.png"
-            alt="Project 1"
-            width={600}
-            height={400}
-            className="project-image"
-          />
-          <div className="project-content">
-            <h3>Cozy Crate E-Commerce</h3>
-            <p className="project-description">A Java GUI Swing Program that uses SQLITE database for CRUD operations </p>
-            <a href="#" className="project-link" target="_blank">View Project</a>
-          </div>
-        </div>
-        <div className="project-card">
-          <Image
-            src="/images/e-tour-travels.png"
-            alt="Project 2" 
-            width={600}
-            height={400}
-            className="project-image"
-          />
-          <div className="project-content">
-            <h3>E Tour Travels</h3>
-            <p className="project-description">A static website for our first year, first sem project</p>
-            <a href="#" className="project-link" target="_blank">View Project</a>
-          </div>
-        </div>
-        <div className="project-card">
-          <Image
-            src="/images/sinervet.png"
-            alt="Project 2" 
-            width={600}
-            height={400}
-            className="project-image"
-          />
-          <div className="project-content">
-            <h3>Sinervet VetHub</h3>
-            <p className="project-description">A website for veterinary at local town</p>
-            <a href="#" className="project-link" target="_blank">View Project</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   )
 }

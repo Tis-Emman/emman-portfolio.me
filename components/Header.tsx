@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { Check, Calendar, Mail } from "lucide-react"; // Import icons from Lucide React
 
 export default function Header() {
   const [hovered, setHovered] = useState(false);
@@ -11,6 +12,7 @@ export default function Header() {
     <header>
       <div className="container">
         <div className="header-content">
+          {/* Profile Images */}
           <div
             className="profile-pic-wrapper"
             onMouseEnter={() => setHovered(true)}
@@ -32,39 +34,45 @@ export default function Header() {
             />
           </div>
 
+          {/* Info Section */}
           <div className="header-info">
-            <h1>
+            <h1 className="flex items-center gap-2">
               Emmanuel Dela Pena
-              <span className="verified-badge">✓</span>
+              <Check className="text-blue-500 w-5 h-5" /> {/* Lucide Check Icon */}
               <ThemeToggle />
             </h1>
             <p className="location">📍 Baliuag City, Bulacan, Philippines</p>
             <p className="tagline">
               Aspiring Full Stack Developer | Backend Developer
             </p>
-            <div className="header-buttons">
+
+            {/* Buttons */}
+            <div className="header-buttons flex gap-3 mt-4">
               <a
                 href="https://calendly.com/emmandelapena755"
-                className="btn"
+                className="btn flex items-center gap-1"
                 target="_blank"
               >
-                📅 Schedule a Call
+                <Calendar className="w-4 h-4" />
+                Schedule a Call
               </a>
 
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=emmandelapena755@gmail.com"
-                className="btn"
+                className="btn flex items-center gap-1"
                 target="_blank"
               >
-                ✉️ Send Email
+                <Mail className="w-4 h-4" />
+                Send Email
               </a>
 
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=your.email@example.com&su=CV Request&body=Hi Emmanuel,"
-                className="btn"
+                className="btn flex items-center gap-1"
                 target="_blank"
               >
-                ✉ View my CV
+                <Mail className="w-4 h-4" />
+                View my CV
               </a>
             </div>
           </div>

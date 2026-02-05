@@ -1460,5 +1460,319 @@ footer {
   .cert-provider-year {
     font-size: 0.7rem;
   }
+
   
+  
+  
+}
+
+/* ============================================
+   PROJECTS PAGE STYLES (POLISHED)
+   Note: These styles use different class names to avoid 
+   conflicts with the home page projects section
+   ============================================ */
+
+/* Projects Page Container */
+.projects-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.projects-content {
+  flex: 1;
+  padding-bottom: 2rem;
+}
+
+/* Projects Page Header (different from home page) */
+.projects-page .projects-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem 0;
+  margin-bottom: 3rem;
+}
+
+/* This ensures home page projects-header stays unchanged */
+section.projects-section .projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  background: transparent;
+  border-bottom: none;
+  padding: 0;
+}
+
+section.projects-section .projects-header h2 {
+  font-size: 1.5rem;
+}
+
+.header-content-projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.header-content-projects h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Syne', sans-serif;
+}
+
+.projects-stats {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  font-family: 'Syne', sans-serif;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.all-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card-full {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: fadeInUp 0.6s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-full:hover {
+  border-color: var(--accent-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 255, 255, 0.15);
+}
+
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-image-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card-full:hover .project-image-full {
+  transform: scale(1.08);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card-full:hover .project-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.95);
+  border: 2px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-link-btn:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  border-color: var(--accent-cyan);
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+}
+
+.project-info-full {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-info-full h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-family: 'Syne', sans-serif;
+  color: var(--text-primary);
+}
+
+.project-description-full {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tech-badge {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.project-card-full:hover .tech-badge {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* Responsive for Projects Page */
+@media (max-width: 1024px) {
+  .all-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .header-content-projects {
+    flex-direction: column;
+  }
+  
+  .projects-stats {
+    align-self: flex-start;
+  }
+  
+  .header-content-projects h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-page .projects-header {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+  
+  .header-content-projects h1 {
+    font-size: 1.2rem;
+  }
+  
+  .projects-stats {
+    gap: 1.5rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.65rem;
+  }
+  
+  .project-image-wrapper {
+    height: 200px;
+  }
+  
+  .project-info-full {
+    padding: 1.2rem;
+  }
+  
+  .project-info-full h3 {
+    font-size: 1rem;
+  }
+  
+  .project-description-full {
+    font-size: 0.8rem;
+  }
+  
+  .tech-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.65rem;
+  }
+  
+  .project-link-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .all-projects-grid {
+    gap: 1.25rem;
+  }
+  
+  .projects-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-self: stretch;
+  }
+  
+  .stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
 }
