@@ -5,72 +5,74 @@ export default function Projects() {
   return (
     <section className="projects-section">
       <div className="container">
-        <div className="projects-header">
-          <h2>Projects</h2>
-          <Link href="/projects" className="view-all">
-            View All
-            <span> →</span>
-          </Link>
-        </div>
-        
-        <div className="projects-grid">
-          {/* Project Card 1: Cozy Crate E-Commerce */}
-          <div className="project-card">
-            <Image
-              src="/images/cozy-crate.png"
-              alt="Cozy Crate E-Commerce"
-              width={600}
-              height={400}
-              className="project-image"
-            />
-            <div className="project-content">
-              <h3>Cozy Crate E-Commerce</h3>
-              <p className="project-description">
-                A Java GUI Swing Program that uses SQLITE database for CRUD operations
-              </p>
-              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
-                View Project
-              </a>
-            </div>
+        <div className="projects-container-wrapper">
+          <div className="projects-header">
+            <h2>Projects</h2>
+            <Link href="/projects" className="view-all">
+              View All
+              <span> →</span>
+            </Link>
           </div>
-
-          {/* Project Card 2: E Tour Travels */}
-          <div className="project-card">
-            <Image
-              src="/images/e-tour-travels.png"
-              alt="E Tour Travels" 
-              width={600}
-              height={400}
-              className="project-image"
-            />
-            <div className="project-content">
-              <h3>E Tour Travels</h3>
-              <p className="project-description">
-                A static website for our first year, first sem project
-              </p>
-              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
-                View Project
-              </a>
+          
+          <div className="projects-grid">
+            {/* Project Card 1: Cozy Crate E-Commerce */}
+            <div className="project-card">
+              <Image
+                src="/images/cozy-crate.png"
+                alt="Cozy Crate E-Commerce"
+                width={600}
+                height={400}
+                className="project-image"
+              />
+              <div className="project-content">
+                <h3>Cozy Crate E-Commerce</h3>
+                <p className="project-description">
+                  A Java GUI Swing Program that uses SQLITE database for CRUD operations
+                </p>
+                <a href="https://github.com/Tis-Emman/Cozy_Crave_Ecommerce" className="project-link" target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Project Card 3: Sinervet VetHub */}
-          <div className="project-card">
-            <Image
-              src="/images/sinervet.png"
-              alt="Sinervet VetHub" 
-              width={600}
-              height={400}
-              className="project-image"
-            />
-            <div className="project-content">
-              <h3>Sinervet VetHub</h3>
-              <p className="project-description">
-                A website for veterinary at local town
-              </p>
-              <a href="#" className="project-link" target="_blank" rel="noopener noreferrer">
-                View Project
-              </a>
+            {/* Project Card 2: E Tour Travels */}
+            <div className="project-card">
+              <Image
+                src="/images/e-tour-travels.png"
+                alt="E Tour Travels" 
+                width={600}
+                height={400}
+                className="project-image"
+              />
+              <div className="project-content">
+                <h3>E Tour Travels</h3>
+                <p className="project-description">
+                  A static website for our first year, first sem project
+                </p>
+                <a href="https://github.com/Tis-Emman/PetSineVet" className="project-link" target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
+              </div>
+            </div>
+
+            {/* Project Card 3: Sinervet VetHub */}
+            <div className="project-card">
+              <Image
+                src="/images/sinervet.png"
+                alt="Sinervet VetHub" 
+                width={600}
+                height={400}
+                className="project-image"
+              />
+              <div className="project-content">
+                <h3>Sinervet VetHub</h3>
+                <p className="project-description">
+                  A website for veterinary at local town
+                </p>
+                <a href="https://github.com/Tis-Emman/PetSineVet" className="project-link" target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
         </div>
