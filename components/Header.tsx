@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
-import { Check, Calendar, Mail, MapPin } from "lucide-react"; // added MapPin
+import { Check, Calendar, Mail, MapPin, FileText } from "lucide-react";
 
 export default function Header() {
   const [hovered, setHovered] = useState(false);
@@ -75,7 +75,7 @@ export default function Header() {
                 className="btn flex items-center gap-1"
                 target="_blank"
               >
-                <Mail className="w-4 h-4" />
+                <FileText className="w-4 h-4" />
                 View my CV
               </a>
             </div>

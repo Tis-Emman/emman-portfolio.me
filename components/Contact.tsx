@@ -1,7 +1,7 @@
 "use client";
 
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
-import { Mail, PhoneCall } from "lucide-react";
+import { Mail, PhoneCall, FileText } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -35,6 +35,8 @@ export default function Contact() {
               </a>
             </div>
           </div>
+
+          
           <div className="contact-method flex items-center gap-2">
             <PhoneCall className="w-5 h-5 text-green-500" />{" "}
             {/* Lucide Phone Icon */}
@@ -45,6 +47,16 @@ export default function Contact() {
               </a>
             </div>
           </div> 
+
+                    <div className="contact-method flex items-center gap-2">
+            <FileText className="w-4 h-4" /> {/* Lucide Mail Icon */}
+            <div>
+              <h4>View my CV</h4>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=emmandelapena755@gmail.com">
+                Click here to view
+              </a>
+            </div>
+          </div>
           
         </div>
       </div>
