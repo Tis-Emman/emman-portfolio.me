@@ -39,7 +39,6 @@ export default function Header() {
           <div className="header-info">
             <h1 className="flex items-center gap-2">
               Emmanuel Dela Pena
-              <Check className="text-blue-500 w-5 h-5" />
 
             </h1>
 
