@@ -18,6 +18,7 @@ export default function Header() {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
           >
+                          
             <Image
               src="/images/profile_new.jpg"
               alt="Profile"
@@ -39,8 +40,9 @@ export default function Header() {
             <h1 className="flex items-center gap-2">
               Emmanuel Dela Pena
               <Check className="text-blue-500 w-5 h-5" />
-              <ThemeToggle />
+
             </h1>
+
             <p className="location">
               <MapPin className="location-icon" />
               Baliuag City, Bulacan, Philippines
@@ -49,7 +51,7 @@ export default function Header() {
             <p className="tagline">
               Aspiring Full Stack Developer | Backend Developer
             </p>
-
+            <ThemeToggle />
             {/* Buttons */}
             <div className="header-buttons flex gap-3 mt-4">
               <a

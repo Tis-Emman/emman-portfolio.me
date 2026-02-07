@@ -74,6 +74,7 @@ header .container {
   display: flex;
   align-items: center;
   gap: 2rem;
+  position: relative;
 }
 
 .profile-pic-wrapper {
@@ -945,6 +946,9 @@ footer {
 
 /* Theme Toggle */
 .theme-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -957,7 +961,6 @@ footer {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  margin-left: 1rem;
 }
 
 .theme-toggle:hover {
