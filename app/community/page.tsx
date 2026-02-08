@@ -14,6 +14,7 @@ import {
   LogOut,
   Loader,
   Mail,
+  LogIn,
 } from "lucide-react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdClose } from "react-icons/md";
@@ -67,6 +68,7 @@ export default function CommunityHub() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showSignInPassword, setShowSignInPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -128,27 +130,28 @@ export default function CommunityHub() {
 
     initAuth();
 
-    const { data: { subscription } } =
-      supabase.auth.onAuthStateChange(async (_event, session) => {
-        if (!mounted) return;
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (!mounted) return;
 
-        if (session?.user) {
-          const { data: profile } = await supabase
-            .from("profiles")
-            .select("*")
-            .eq("id", session.user.id)
-            .single();
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", session.user.id)
+          .single();
 
-          setUser({
-            id: session.user.id,
-            email: session.user.email || "",
-            firstName: profile?.first_name || "",
-            lastName: profile?.last_name || "",
-          });
-        } else {
-          setUser(null);
-        }
-      });
+        setUser({
+          id: session.user.id,
+          email: session.user.email || "",
+          firstName: profile?.first_name || "",
+          lastName: profile?.last_name || "",
+        });
+      } else {
+        setUser(null);
+      }
+    });
 
     return () => {
       mounted = false;
@@ -361,27 +364,33 @@ export default function CommunityHub() {
   };
 
   const handleLogout = async () => {
+    setIsLoading(true);
     try {
       // First, clear the user state immediately
       setUser(null);
-      
+
       // Then sign out from Supabase
-      const { error } = await supabase.auth.signOut({ scope: 'local' });
+      const { error } = await supabase.auth.signOut({ scope: "local" });
 
       if (error) {
         console.error("Logout error:", error);
         setError(error.message);
+        setIsLoading(false);
         return;
       }
 
       // Clear any additional local storage items if needed
-      localStorage.removeItem('supabase.auth.token');
-      
+      localStorage.removeItem("supabase.auth.token");
+
       console.log("Logout successful");
 
+      // Close the logout modal
+      setShowLogoutModal(false);
+      setIsLoading(false);
     } catch (err: any) {
       console.error("Logout failed:", err);
       setError(err.message || "Logout failed");
+      setIsLoading(false);
     }
   };
 
@@ -492,7 +501,7 @@ export default function CommunityHub() {
             {user ? (
               // User IS logged in
               <div className="card">
-                <h3 className="sidebar-title">Welcome back! 👋</h3>
+                <h3 className="sidebar-title">Welcome back!</h3>
                 <p className="sidebar-description">
                   {user.firstName} {user.lastName}, you're part of the community
                 </p>
@@ -505,7 +514,10 @@ export default function CommunityHub() {
                 >
                   <MessageCircle size={18} /> Create Post
                 </button>
-                <button className="btn-secondary" onClick={handleLogout}>
+                <button 
+                  className="btn-logout" 
+                  onClick={() => setShowLogoutModal(true)}
+                >
                   <LogOut size={18} /> Logout
                 </button>
               </div>
@@ -524,10 +536,10 @@ export default function CommunityHub() {
                   <UserPlus size={18} /> Register to Participate
                 </button>
                 <button
-                  className="btn-secondary"
+                  className="btn-signin-sidebar"
                   onClick={() => setShowSignInModal(true)}
                 >
-                  Sign In
+                <LogIn size={18} />   Sign In
                 </button>
               </div>
             )}
@@ -999,6 +1011,50 @@ export default function CommunityHub() {
               </button>
             </div>
           </form>
+        </div>
+      </div>
+
+      {/* Logout Confirmation Modal */}
+      <div className={`logout-modal ${showLogoutModal ? "active" : ""}`}>
+        <div
+          className="modal-backdrop"
+          onClick={() => !isLoading && setShowLogoutModal(false)}
+        />
+
+        <div className="logout-modal-content">
+          <h2 className="logout-modal-title">Log Out?</h2>
+          
+          <p className="logout-modal-description">
+            Are you sure you want to log out? You'll need to sign in again to participate in discussions.
+          </p>
+
+          <div className="logout-modal-actions">
+            <button
+              className="btn-cancel-logout"
+              onClick={() => setShowLogoutModal(false)}
+              disabled={isLoading}
+            >
+              Cancel
+            </button>
+            
+            <button
+              className="btn-confirm-logout"
+              onClick={handleLogout}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <Loader size={16} className="animate-spin" />
+                  Logging out...
+                </>
+              ) : (
+                <>
+                  <LogOut size={16} />
+                  Log Out
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

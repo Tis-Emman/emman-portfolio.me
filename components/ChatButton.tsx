@@ -8,7 +8,7 @@ export default function ChatButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
-      text: "Hi there! 👋 I'm Emman's AI assistant. Welcome to his portfolio! Feel free to ask me about his projects, technical skills, experience, or how playing guitar helps fuel his creativity and problem-solving mindset. How can I assist you today?",
+      text: "Hi there! 👋 I'm Emmanuel Dela Pena (Emman). Welcome to my portfolio! Feel free to ask me about my projects, technical skills, experience, or even how playing guitar helps fuel my creativity and problem-solving mindset. How can I help you today?",
       sender: "bot",
       timestamp: new Date(),
     },

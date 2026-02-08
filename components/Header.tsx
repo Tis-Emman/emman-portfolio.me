@@ -56,7 +56,7 @@ export default function Header() {
             <div className="header-buttons flex gap-3 mt-4">
               <Link
                 href="/community"
-                className="btn flex items-center gap-1"
+                className="btn btn-join-community flex"
               >
                 <Users className="w-4 h-4" />
                 Join My Community
