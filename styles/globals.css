@@ -77,6 +77,7 @@ header .container {
   position: relative;
 }
 
+
 .profile-pic-wrapper {
   position: relative;
   width: 175px;
@@ -1143,7 +1144,7 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 956px) {
   .header-content {
     flex-direction: column;
     text-align: center;
