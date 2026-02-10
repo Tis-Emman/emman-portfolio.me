@@ -61,6 +61,7 @@ export default function CommunityHub() {
     const result = await signUp(data);
 
     if (result.success && result.email) {
+      // Keep showRegisterModal=true so the EmailVerification modal renders
       startWaitingForVerification(result.email);
     }
   };
@@ -171,7 +172,7 @@ export default function CommunityHub() {
         </div>
       </div>
 
-      {/* Modals */}
+      {/* Registration form — only shown on the "form" step */}
       {registrationStep === "form" && (
         <RegistrationModal
           isOpen={showRegisterModal}
@@ -186,22 +187,23 @@ export default function CommunityHub() {
         />
       )}
 
-      {registrationStep === "waiting" && (
+      {/* Email verification waiting screen
+          isOpen is always true here because this component only mounts
+          when registrationStep === "waiting", so showRegisterModal is guaranteed true */}
+      {registrationStep === "waiting" && showRegisterModal && (
         <EmailVerification
-          isOpen={showRegisterModal}
+          isOpen={true}
           email={verificationEmail}
           onResend={() => resendVerificationEmail(verificationEmail)}
           onClose={closeRegistrationFlow}
         />
       )}
 
-      {registrationStep === "success" && (
+      {/* Success screen after email confirmed */}
+      {registrationStep === "success" && showRegisterModal && (
         <RegistrationSuccess
-          isOpen={showRegisterModal}
-          onClose={() => {
-            closeRegistrationFlow();
-            setShowRegisterModal(false);
-          }}
+          isOpen={true}
+          onClose={closeRegistrationFlow}
         />
       )}
 

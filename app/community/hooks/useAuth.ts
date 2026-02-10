@@ -3,11 +3,27 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import type { User, RegistrationData, SignInData } from "../types/community";
+
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [error, setError] = useState("");
+
+  const buildUser = async (supabaseUser: any): Promise<User> => {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", supabaseUser.id)
+      .single();
+
+    return {
+      id: supabaseUser.id,
+      email: supabaseUser.email || "",
+      firstName: profile?.first_name || "",
+      lastName: profile?.last_name || "",
+    };
+  };
 
   // Initialize auth state
   useEffect(() => {
@@ -21,18 +37,8 @@ export function useAuth() {
       if (!mounted) return;
 
       if (session?.user) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-
-        setUser({
-          id: session.user.id,
-          email: session.user.email || "",
-          firstName: profile?.first_name || "",
-          lastName: profile?.last_name || "",
-        });
+        const builtUser = await buildUser(session.user);
+        if (mounted) setUser(builtUser);
       } else {
         setUser(null);
       }
@@ -44,22 +50,15 @@ export function useAuth() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (!mounted) return;
 
       if (session?.user) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-
-        setUser({
-          id: session.user.id,
-          email: session.user.email || "",
-          firstName: profile?.first_name || "",
-          lastName: profile?.last_name || "",
-        });
+        // SIGNED_IN fires both on normal login AND after email confirmation.
+        // In both cases we want to set the user — the verification hook handles
+        // moving the registration step to "success" separately.
+        const builtUser = await buildUser(session.user);
+        if (mounted) setUser(builtUser);
       } else {
         setUser(null);
       }
@@ -76,21 +75,14 @@ export function useAuth() {
     setError("");
 
     try {
-      // Step 1: Sign up user with Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
       });
 
-      if (authError) {
-        throw new Error(authError.message);
-      }
+      if (authError) throw new Error(authError.message);
+      if (!authData.user) throw new Error("Registration failed. Please try again.");
 
-      if (!authData.user) {
-        throw new Error("Registration failed. Please try again.");
-      }
-
-      // Step 2: Create profile in profiles table
       const profileData = {
         id: authData.user.id,
         email: data.email,
@@ -123,18 +115,14 @@ export function useAuth() {
     setError("");
 
     try {
-      const { data: authData, error } = await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
-      });
+      const { data: authData, error: signInError } =
+        await supabase.auth.signInWithPassword({
+          email: data.email,
+          password: data.password,
+        });
 
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      if (!authData.user) {
-        throw new Error("Sign in failed. Please try again.");
-      }
+      if (signInError) throw new Error(signInError.message);
+      if (!authData.user) throw new Error("Sign in failed. Please try again.");
 
       setIsLoading(false);
       return { success: true };
@@ -150,17 +138,14 @@ export function useAuth() {
     setError("");
 
     try {
-      // Clear user state immediately
+      // Optimistically clear user before the network call
       setUser(null);
 
-      const { error } = await supabase.auth.signOut({ scope: "local" });
+      const { error: signOutError } = await supabase.auth.signOut({
+        scope: "local",
+      });
 
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      // Clear any additional local storage items
-      localStorage.removeItem("supabase.auth.token");
+      if (signOutError) throw new Error(signOutError.message);
 
       setIsLoading(false);
       return { success: true };
@@ -175,14 +160,12 @@ export function useAuth() {
     setError("");
 
     try {
-      const { error } = await supabase.auth.resend({
+      const { error: resendError } = await supabase.auth.resend({
         type: "signup",
-        email: email,
+        email,
       });
 
-      if (error) {
-        throw new Error(`Failed to resend: ${error.message}`);
-      }
+      if (resendError) throw new Error(`Failed to resend: ${resendError.message}`);
 
       return { success: true };
     } catch (err: any) {
