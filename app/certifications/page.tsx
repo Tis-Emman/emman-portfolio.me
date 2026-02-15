@@ -29,7 +29,7 @@ export default function CertificationsPage() {
     },
 
     {
-      name: "Python Essentials 1",
+      name: "Introduction to SQL",
       provider: "DataCamp",
       year: "2026",
       img: "/images/introduction-to-SQL-certificate.png"
