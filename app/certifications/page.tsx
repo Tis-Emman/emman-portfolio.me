@@ -27,6 +27,13 @@ export default function CertificationsPage() {
       year: "2026",
       img: "/images/python-essentials-1-certificate.png"
     },
+
+    {
+      name: "Python Essentials 1",
+      provider: "DataCamp",
+      year: "2026",
+      img: "/images/introduction-to-SQL-certificate.png"
+    }
     
   ]
 
