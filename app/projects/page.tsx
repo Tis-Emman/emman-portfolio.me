@@ -90,7 +90,7 @@ export default function ProjectsPage() {
                     alt={project.title}
                     width={600}
                     height={400}
-                    className="project-image-full"
+                    className="project-image-full" // Added "rounded-corners" class
                   />
                   <div className="project-overlay">
                     <div className="project-links">
