@@ -54,9 +54,6 @@ export function useAuth() {
       if (!mounted) return;
 
       if (session?.user) {
-        // SIGNED_IN fires both on normal login AND after email confirmation.
-        // In both cases we want to set the user — the verification hook handles
-        // moving the registration step to "success" separately.
         const builtUser = await buildUser(session.user);
         if (mounted) setUser(builtUser);
       } else {

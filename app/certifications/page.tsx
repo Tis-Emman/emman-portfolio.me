@@ -18,7 +18,7 @@ export default function CertificationsPage() {
 
     {
       name: "Data Analyst Associate",
-      provider: "DataCampr",
+      provider: "DataCamp",
       year: "2026",
       img: "/images/certifications/associate-data-analyst-certificate.png"
     },
