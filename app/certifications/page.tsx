@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const CERTS_PER_PAGE = 4;
-const FADE_OUT_DURATION = 250; // ms
+const FADE_OUT_DURATION = 250;
 
 export default function CertificationsPage() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isAnimating, setIsAnimating] = useState(false); // true = fading out
-  const [isFadingIn, setIsFadingIn] = useState(false);   // true = fading in
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isFadingIn, setIsFadingIn] = useState(false);
   const animTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -19,6 +19,12 @@ export default function CertificationsPage() {
       document.body.style.overflow = "auto";
     };
   }, [selectedCert]);
+
+  useEffect(() => {
+    return () => {
+      if (animTimeoutRef.current) clearTimeout(animTimeoutRef.current);
+    };
+  }, []);
 
   const certifications = [
     {
@@ -63,25 +69,18 @@ export default function CertificationsPage() {
   const totalPages = usePagination ? Math.ceil(certifications.length / CERTS_PER_PAGE) : 1;
 
   const displayedCerts = usePagination
-    ? certifications.slice(
-        (currentPage - 1) * CERTS_PER_PAGE,
-        currentPage * CERTS_PER_PAGE
-      )
+    ? certifications.slice((currentPage - 1) * CERTS_PER_PAGE, currentPage * CERTS_PER_PAGE)
     : certifications;
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages || isAnimating) return;
 
-    // Step 1: fade OUT
     setIsAnimating(true);
     setIsFadingIn(false);
 
     animTimeoutRef.current = setTimeout(() => {
-      // Step 2: swap page
       setCurrentPage(page);
       setIsAnimating(false);
-
-      // Step 3: fade IN
       setIsFadingIn(true);
       animTimeoutRef.current = setTimeout(() => {
         setIsFadingIn(false);
@@ -89,13 +88,6 @@ export default function CertificationsPage() {
       }, FADE_OUT_DURATION);
     }, FADE_OUT_DURATION);
   };
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (animTimeoutRef.current) clearTimeout(animTimeoutRef.current);
-    };
-  }, []);
 
   return (
     <div className="certifications-page">
@@ -120,7 +112,9 @@ export default function CertificationsPage() {
         {/* Certifications Grid */}
         <div className="container">
           <div
-            className={`certifications-grid ${isAnimating ? "cert-grid-fade-out" : isFadingIn ? "cert-grid-fade-in" : ""}`}
+            className={`certifications-grid ${
+              isAnimating ? "grid-fade-out" : isFadingIn ? "grid-fade-in" : ""
+            }`}
           >
             {displayedCerts.map((cert, idx) => (
               <div
@@ -141,23 +135,23 @@ export default function CertificationsPage() {
             ))}
           </div>
 
-          {/* Pagination — only shown when certs > 4 */}
+          {/* Pagination */}
           {usePagination && (
-            <div className="cert-pagination">
+            <div className="pagination">
               <button
-                className="cert-page-btn cert-page-nav"
+                className="page-btn"
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
                 aria-label="Previous page"
               >
-                <span className="cert-nav-arrow">‹</span> Prev
+                <span className="nav-arrow">‹</span> Prev
               </button>
 
-              <div className="cert-page-numbers">
+              <div className="page-numbers">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                   <button
                     key={page}
-                    className={`cert-page-btn cert-page-number ${currentPage === page ? "active" : ""}`}
+                    className={`page-btn ${currentPage === page ? "active" : ""}`}
                     onClick={() => handlePageChange(page)}
                     aria-label={`Page ${page}`}
                     aria-current={currentPage === page ? "page" : undefined}
@@ -168,12 +162,12 @@ export default function CertificationsPage() {
               </div>
 
               <button
-                className="cert-page-btn cert-page-nav"
+                className="page-btn"
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 aria-label="Next page"
               >
-                Next <span className="cert-nav-arrow">›</span>
+                Next <span className="nav-arrow">›</span>
               </button>
             </div>
           )}
