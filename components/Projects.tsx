@@ -38,16 +38,16 @@ export default function Projects() {
             {/* Project Card 2: E Tour Travels */}
             <div className="project-card">
               <Image
-                src="/images/projects/e-tour-travels.png"
-                alt="E Tour Travels" 
+                src="/images/projects/emeren_inventory.png"
+                alt="EMEREN Inventory System" 
                 width={600}
                 height={400}
                 className="project-image"
               />
               <div className="project-content">
-                <h3>E Tour Travels</h3>
+                <h3>EMEREN Inventory System</h3>
                 <p className="project-description">
-                  A static website for our first year, first sem project
+                  An inventory management system for a local business, built with React and Supabase.
                 </p>
                 <a href="https://github.com/Tis-Emman/PetSineVet" className="project-link" target="_blank" rel="noopener noreferrer">
                   View Project

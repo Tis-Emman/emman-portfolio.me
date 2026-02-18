@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ExternalLink, Github } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react' 
 
 const PROJECTS_PER_PAGE = 4;
 const FADE_OUT_DURATION = 250;
