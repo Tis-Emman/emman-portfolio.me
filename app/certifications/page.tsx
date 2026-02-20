@@ -45,6 +45,14 @@ export default function CertificationsPage() {
       year: "2026",
       img: "/images/certifications/intermediate-java-certificate.png",
     },
+
+    {
+      name: "Intermediate Git",
+      provider: "DataCamp",
+      year: "2026",
+      img: "/images/certifications/intermediate-git-certificate.png",
+    },
+
     {
       name: "Introduction to SQL",
       provider: "DataCamp",
