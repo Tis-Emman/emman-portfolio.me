@@ -94,9 +94,7 @@ export default function ChatButton() {
         },
         (payload: any) => {
           const newMessage = payload.new;
-          // Add any new message (admin or bot or user)
           setMessages((prev) => {
-            // Check if message already exists by ID or content
             const exists = prev.some(
               (m) =>
                 m.id === newMessage.id ||
@@ -186,18 +184,8 @@ export default function ChatButton() {
 
         const data = await response.json();
 
-        if (data.reply) {
-          // Add bot response only if AI responded
-          setMessages((prev) => [
-            ...prev,
-            {
-              text: data.reply,
-              sender: "bot",
-              timestamp: new Date(),
-            },
-          ]);
-        }
-        // If no reply (admin is responding), polling will pick up new messages
+        // Don't add message here - let polling pick it up from DB
+        // This prevents duplicates from both API response and polling
       } catch (error) {
         console.error("Error:", error);
         setMessages((prev) => [
