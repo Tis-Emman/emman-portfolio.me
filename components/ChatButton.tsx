@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { MessageCircle, X } from "lucide-react";
 import { supabase } from "@/app/community/lib/supabase";
@@ -13,6 +14,13 @@ interface Message {
 }
 
 export default function ChatButton() {
+  const pathname = usePathname();
+  
+  // Don't show chat widget on admin pages
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -25,6 +33,8 @@ export default function ChatButton() {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [visitorId, setVisitorId] = useState<string | null>(null);
+  const [adminStatus, setAdminStatus] = useState("Emman is busy playing guitar");
+  const [isAdminOnline, setIsAdminOnline] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
@@ -78,6 +88,29 @@ export default function ChatButton() {
     };
 
     initSession();
+
+    // Fetch admin status on mount
+    const fetchAdminStatus = async () => {
+      try {
+        const response = await fetch("/api/admin/status", {
+          credentials: "include", // Send cookies with the request
+        });
+        const data = await response.json();
+        setAdminStatus(data.status);
+        setIsAdminOnline(data.isOnline);
+      } catch (err) {
+        console.error("Error fetching admin status:", err);
+        setAdminStatus("Emman is busy playing guitar");
+        setIsAdminOnline(false);
+      }
+    };
+
+    fetchAdminStatus();
+
+    // Poll admin status every 10 seconds
+    const statusInterval = setInterval(fetchAdminStatus, 10000);
+
+    return () => clearInterval(statusInterval);
   }, []);
 
   const scrollToBottom = () => {
@@ -283,7 +316,7 @@ export default function ChatButton() {
         ) : (
           <>
             <MessageCircle size={24} />
-            <span className="chat-button-text">Emman's AI Assistant</span>
+            <span className="chat-button-text">Chat with Emman</span>
           </>
         )}
       </button>
@@ -300,11 +333,11 @@ export default function ChatButton() {
                   width={40}
                   height={40}
                 />
-                <span className="online-indicator"></span>
+                <span className={`online-indicator ${isAdminOnline ? "online" : "offline"}`}></span>
               </div>
               <div>
-                <h4>Emman's AI Assistant</h4>
-                <p className="online-status">ONLINE</p>
+                <h4>Chat with Emman</h4>
+                <p className={`online-status ${isAdminOnline ? "" : "offline"}`}>{adminStatus}</p>
               </div>
             </div>
             <button className="chat-close" onClick={() => setIsOpen(false)}>

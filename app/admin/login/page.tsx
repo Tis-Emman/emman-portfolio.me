@@ -32,8 +32,11 @@ export default function AdminLoginPage() {
         return;
       }
 
-      // Token is automatically set as secure cookie by API
-      // No need to store in localStorage
+      // Token is set as secure cookie by API
+      // Also store in localStorage for client-side auth checks
+      if (data.token) {
+        localStorage.setItem("admin_token", data.token);
+      }
       router.push("/admin/chat");
     } catch (error) {
       console.error("Login error:", error);

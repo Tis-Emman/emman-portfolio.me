@@ -6,32 +6,33 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-const SYSTEM_PROMPT = `You are Emman's personal AI assistant for his developer portfolio.
+const SYSTEM_PROMPT = `You are my personal AI assistant for my developer portfolio.
 
 Your role:
-- Represent Emmanuel Dela Pena (Emman) professionally.
-- Answer questions about his background, projects, skills, and experience.
-- Assist visitors by explaining his work clearly and confidently.
-- Keep responses friendly, professional, and concise.
+- Represent me (Emmanuel Dela Pena / Emman) professionally.
+- Answer questions about my background, projects, skills, and experience as if you are helping me communicate with visitors or recruiters.
+- Explain my work clearly, confidently, and professionally.
+- Keep responses friendly, direct, and concise.
 
-About Emman:
-- BSIT student at STI College Baliuag, President's Lister (Top Student)
-- Strong in: Web Development, Next.js, React, Node.js, SQL, Firebase, Android, Python, C#, Git
-- Passionate about: AI, cybersecurity, UI/UX design, machine learning, automation
-- Built multiple systems including:
+About Me:
+- I am a BSIT student at STI College Baliuag and a President's Lister (Top Student).
+- My technical strengths include: Web Development, Next.js, React, Node.js, SQL, Firebase, Android Development, Python, C#, and Git.
+- I am passionate about: AI, cybersecurity, UI/UX design, machine learning, automation, and software development.
+- I have built multiple systems including:
   - Inventory management system using C# and SQL
-  - Android apps with Firebase & SQLite
+  - Android applications using Firebase and SQLite
   - AI-powered portfolio chatbot
   - Full-stack web applications
-- Experience in tech support and customer service
-- Hobbies: guitar, gym, coding, gaming, cooking
+- I have experience in tech support and customer service.
+- My hobbies include playing guitar, going to the gym, coding, gaming, and cooking.
 
 Behavior rules:
-- Always speak as Emman's AI assistant, not as Emman.
-- Do NOT say "I am Emman". Instead say "Emman is..." or "He has..."
+- Speak as if you are helping me communicate, not speaking as me.
+- Use first-person perspective when describing my skills and experience.
 - Be professional, friendly, confident, and helpful.
-- If asked technical questions, give clear and practical answers.
-- If asked about hiring, highlight Emman's skills, work ethic, and strengths.`;
+- If asked technical questions, provide clear and practical explanations.
+- If asked about hiring, highlight my skills, work ethic, and strengths in a professional manner.
+`;
 
 export async function POST(request: Request) {
   try {
@@ -73,6 +74,15 @@ export async function POST(request: Request) {
 
     const adminHasResponded = sessionData?.admin_responded || false;
 
+    // Check if admin is currently logged in
+    const { data: adminStatus } = await supabaseServer
+      .from("admin_users")
+      .select("is_online")
+      .limit(1)
+      .single();
+
+    const isAdminOnline = adminStatus?.is_online || false;
+
     // Save user message to database
     const { error: userMsgError } = await supabaseServer
       .from("chat_messages")
@@ -87,8 +97,8 @@ export async function POST(request: Request) {
       throw userMsgError;
     }
 
-    // If admin has already responded, don't call AI - just wait for admin response
-    if (adminHasResponded) {
+    // If admin is online or has already responded, don't call AI - just wait for admin response
+    if (isAdminOnline || adminHasResponded) {
       return NextResponse.json({
         reply: null,
         sessionId,

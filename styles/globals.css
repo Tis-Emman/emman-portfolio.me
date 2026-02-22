@@ -746,6 +746,14 @@ footer {
   border-radius: 50%;
 }
 
+.online-indicator.online {
+  background: var(--success);
+}
+
+.online-indicator.offline {
+  background: #ff9500;
+}
+
 .chat-header h4 {
   font-size: 0.95rem;
   font-weight: 600;
@@ -760,6 +768,10 @@ footer {
   font-weight: 600;
   margin: 0;
   letter-spacing: 0.5px;
+}
+
+.online-status.offline {
+  color: #ff9500;
 }
 
 .chat-close {
@@ -972,10 +984,11 @@ footer {
   background: var(--text-secondary);
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Maintain consistent structure */
 @media (max-width: 768px) {
   .chat-widget {
-    width: calc(100vw - 2rem);
+    width: 380px;
+    max-width: calc(100vw - 2rem);
     right: 1rem;
     bottom: 5rem;
   }
@@ -4610,19 +4623,24 @@ textarea:disabled {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+    max-height: 40vh;
+    overflow-x: auto;
+    overflow-y: visible;
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    max-height: calc(100vh - 60px);
   }
 
   .admin-sidebar.mobile-open {
-    max-height: 50vh;
-    overflow-y: auto;
+    display: flex;
   }
 
   .admin-main {
     flex: 1;
-    min-height: 0;
   }
 }
 
