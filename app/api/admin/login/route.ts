@@ -52,10 +52,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // Update last login
+    // Update last login and set online status
     await supabaseServer
       .from("admin_users")
-      .update({ last_login: new Date().toISOString() })
+      .update({ 
+        last_login: new Date().toISOString(),
+        is_online: true 
+      })
       .eq("id", admin.id);
 
     // Generate token

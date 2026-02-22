@@ -29,8 +29,12 @@ CREATE TABLE IF NOT EXISTS admin_users (
   email VARCHAR(255) NOT NULL UNIQUE,
   password_hash VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
-  last_login TIMESTAMP
+  last_login TIMESTAMP,
+  is_online BOOLEAN DEFAULT FALSE
 );
+
+-- Add is_online column if it doesn't exist (migration for existing tables)
+ALTER TABLE admin_users ADD COLUMN IF NOT EXISTS is_online BOOLEAN DEFAULT FALSE;
 
 -- Create indexes for better query performance
 CREATE INDEX idx_chat_sessions_status ON chat_sessions(status);

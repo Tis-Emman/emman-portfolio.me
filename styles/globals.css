@@ -741,7 +741,7 @@ footer {
   right: 0;
   width: 12px;
   height: 12px;
-  background: var(--success);
+  background: #ff9500;
   border: 2px solid var(--bg-card);
   border-radius: 50%;
 }
@@ -984,11 +984,10 @@ footer {
   background: var(--text-secondary);
 }
 
-/* Mobile Responsive - Maintain consistent structure */
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .chat-widget {
-    width: 380px;
-    max-width: calc(100vw - 2rem);
+    width: calc(100vw - 2rem);
     right: 1rem;
     bottom: 5rem;
   }
