@@ -17,17 +17,16 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if admin already exists
-    const { data: existingAdmin, error: checkError } = await supabaseServer
+    // Check if ANY admin already exists
+    const { data: admins, error: checkError } = await supabaseServer
       .from("admin_users")
-      .select("id")
-      .eq("email", email)
-      .single();
+      .select("id", { count: "exact" })
+      .limit(1);
 
-    if (!checkError && existingAdmin) {
+    if (!checkError && admins && admins.length > 0) {
       return NextResponse.json(
-        { error: "Admin account already exists" },
-        { status: 409 }
+        { error: "Admin account already exists. Contact your administrator." },
+        { status: 403 }
       );
     }
 

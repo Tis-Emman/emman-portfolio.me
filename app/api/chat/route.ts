@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase-server";
 
 const groq = new Groq({
-  apiKey: process.env.APIKEY,
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 const SYSTEM_PROMPT = `You are Emman's personal AI assistant for his developer portfolio.
@@ -44,14 +44,29 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if admin has already responded to this session
+    // Check if session exists
     const { data: sessionData, error: sessionError } = await supabaseServer
       .from("chat_sessions")
-      .select("admin_responded")
+      .select("id, admin_responded")
       .eq("id", sessionId)
       .single();
 
-    if (sessionError && sessionError.code !== "PGRST116") {
+    // If session doesn't exist, create it
+    if (sessionError?.code === "PGRST116") {
+      console.log("Session not found, creating new session:", sessionId);
+      const { error: createError } = await supabaseServer
+        .from("chat_sessions")
+        .insert({
+          id: sessionId,
+          visitor_id: visitorId,
+          status: "active",
+        });
+
+      if (createError) {
+        console.error("Error creating session:", createError);
+        throw createError;
+      }
+    } else if (sessionError) {
       console.error("Error fetching session:", sessionError);
       throw sessionError;
     }

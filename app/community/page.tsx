@@ -73,6 +73,19 @@ export default function CommunityHub() {
     }
   }, []);
 
+  // Detect when user returns after clicking email verification link
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("verified") === "true") {
+      // Show the registration modal with success step
+      setShowRegisterModal(true);
+      setRegistrationStep("success");
+      
+      // Clean up the URL
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, [setRegistrationStep]);
+
   // Handlers
   const handleRefresh = () => {
     setIsRefreshing(true);

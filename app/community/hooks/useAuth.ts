@@ -94,32 +94,28 @@ export function useAuth() {
       }
       
       if (!authData.user) throw new Error("Registration failed. Please try again.");
-      const { data: existingProfile } = await supabase
-        .from("profiles")
-        .select("id")
-        .eq("id", authData.user.id)
-        .single();
+      
+      // Create profile via server API to bypass RLS
+      const profileData = {
+        id: authData.user.id,
+        email: data.email,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        user_type: data.userType,
+        school: data.school || null,
+      };
 
-      if (!existingProfile) {
-        const profileData = {
-          id: authData.user.id,
-          email: data.email,
-          first_name: data.firstName,
-          last_name: data.lastName,
-          user_type: data.userType,
-          school: data.school || null,
-        };
+      const profileResponse = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(profileData),
+      });
 
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .insert([profileData])
-          .select();
-
-        if (profileError) {
-          if (profileError.code !== "23505") {
-            throw new Error(`Failed to create profile: ${profileError.message}`);
-          }
-        }
+      if (!profileResponse.ok) {
+        const errorData = await profileResponse.json();
+        throw new Error(errorData.error || "Failed to create profile");
       }
 
       setIsLoading(false);

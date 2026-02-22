@@ -31,6 +31,7 @@ export default function AdminDashboard() {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
 
   // Check auth on mount
@@ -150,6 +151,11 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleSelectSession = (sessionId: string) => {
+    setSelectedSessionId(sessionId);
+    setSidebarOpen(false);
+  };
+
   if (!isAuthenticated || isLoading) {
     return (
       <div className="admin-loading">
@@ -164,7 +170,7 @@ export default function AdminDashboard() {
   return (
     <div className="admin-dashboard">
       {/* Sidebar */}
-      <div className="admin-sidebar">
+      <div className={`admin-sidebar ${sidebarOpen ? "mobile-open" : ""}`}>
         <div className="admin-sidebar-header">
           <h1 className="admin-sidebar-title">Admin Chat</h1>
           <div className="admin-sidebar-actions">
@@ -184,7 +190,7 @@ export default function AdminDashboard() {
             sessions.map((session) => (
               <button
                 key={session.id}
-                onClick={() => setSelectedSessionId(session.id)}
+                onClick={() => handleSelectSession(session.id)}
                 className={`admin-chat-item ${
                   selectedSessionId === session.id ? "active" : ""
                 }`}
@@ -215,10 +221,19 @@ export default function AdminDashboard() {
           <>
             {/* Header */}
             <div className="admin-header">
-              <h2 className="admin-header-title">
-                {selectedSession.visitor_name || "Anonymous"}
-              </h2>
-              <p className="admin-header-subtitle">{selectedSession.visitor_id}</p>
+              <div>
+                <h2 className="admin-header-title">
+                  {selectedSession.visitor_name || "Anonymous"}
+                </h2>
+                <p className="admin-header-subtitle">{selectedSession.visitor_id}</p>
+              </div>
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="admin-sidebar-toggle"
+                aria-label="Toggle conversations"
+              >
+                ☰
+              </button>
             </div>
 
             {/* Messages */}

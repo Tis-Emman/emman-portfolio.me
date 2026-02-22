@@ -27,10 +27,11 @@ export async function GET(request: NextRequest) {
     });
 
     if (!error) {
-      return NextResponse.redirect(`${origin}/`);
+      // Redirect back to community page with verification success flag
+      return NextResponse.redirect(`${origin}/community?verified=true`);
     }
   }
 
-  // Fallback — just go home
-  return NextResponse.redirect(`${origin}/`);
+  // Fallback — go to community page
+  return NextResponse.redirect(`${origin}/community`);
 }

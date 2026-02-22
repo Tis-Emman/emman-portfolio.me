@@ -51,14 +51,23 @@ export default function ChatButton() {
             .select()
             .single();
 
-          if (!error && data) {
+          if (error) {
+            console.error("Error creating session on client:", error);
+            // If client-side creation fails, the server will create it on first message
+            // For now, generate a temporary ID
+            storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          } else if (data) {
             storedSessionId = data.id;
-            if (storedSessionId) {
-              localStorage.setItem("chat_session_id", storedSessionId);
-            }
+          }
+
+          if (storedSessionId) {
+            localStorage.setItem("chat_session_id", storedSessionId);
           }
         } catch (err) {
           console.error("Error creating session:", err);
+          // Generate a fallback session ID that will be created server-side
+          storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          localStorage.setItem("chat_session_id", storedSessionId);
         }
       }
 
@@ -168,8 +177,18 @@ export default function ChatButton() {
       setInputValue("");
       setIsLoading(true);
 
+      // Add user message to UI immediately (optimistic update)
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: userMessage,
+          sender: "user",
+          timestamp: new Date(),
+        },
+      ]);
+
       try {
-        // Call chat API - don't show message optimistically
+        // Call chat API in the background
         const response = await fetch("/api/chat", {
           method: "POST",
           headers: {
@@ -184,8 +203,7 @@ export default function ChatButton() {
 
         const data = await response.json();
 
-        // Don't add message here - let polling pick it up from DB
-        // This prevents duplicates from both API response and polling
+        // The bot and admin responses will be picked up by polling/subscription
       } catch (error) {
         console.error("Error:", error);
         setMessages((prev) => [

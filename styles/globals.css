@@ -4600,9 +4600,44 @@ textarea:disabled {
   flex-direction: column;
 }
 
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .admin-sidebar.mobile-open {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .admin-main {
+    flex: 1;
+    min-height: 0;
+  }
+}
+
 .admin-sidebar-header {
   padding: 1.5rem;
   border-bottom: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .admin-sidebar-title {
@@ -4613,15 +4648,50 @@ textarea:disabled {
   font-family: 'Syne', sans-serif;
 }
 
+@media (max-width: 768px) {
+  .admin-sidebar-title {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+}
+
 .admin-sidebar-actions {
   display: flex;
   gap: 0.5rem;
+}
+
+.admin-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar-toggle {
+    display: block;
+  }
 }
 
 .admin-sidebar-list {
   flex: 1;
   overflow-y: auto;
   padding: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar-list {
+    display: flex;
+    overflow-y: auto;
+    overflow-x: auto;
+    gap: 0;
+    padding: 0;
+  }
 }
 
 .admin-chat-item {
@@ -4635,6 +4705,24 @@ textarea:disabled {
   background: transparent;
   width: 100%;
   border: none;
+}
+
+@media (max-width: 768px) {
+  .admin-chat-item {
+    padding: 0.875rem 1rem;
+    border-bottom: none;
+    border-right: 1px solid var(--border-color);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 220px;
+    width: auto;
+  }
+
+  .admin-chat-item.active {
+    border-left: none;
+    border-bottom: 3px solid var(--accent-cyan);
+  }
 }
 
 .admin-chat-item:hover {
@@ -4679,6 +4767,14 @@ textarea:disabled {
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .admin-chat-item-meta {
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
 .admin-chat-item-time {
   font-size: 0.75rem;
   color: var(--text-secondary);
@@ -4721,6 +4817,15 @@ textarea:disabled {
   border-bottom: 1px solid var(--border-color);
 }
 
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 .admin-header-title {
   font-size: 1.3rem;
   font-weight: 700;
@@ -4728,9 +4833,22 @@ textarea:disabled {
   margin-bottom: 0.3rem;
 }
 
+@media (max-width: 768px) {
+  .admin-header-title {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+}
+
 .admin-header-subtitle {
   font-size: 0.85rem;
   color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .admin-header-subtitle {
+    font-size: 0.75rem;
+  }
 }
 
 .admin-messages {
@@ -4740,6 +4858,13 @@ textarea:disabled {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .admin-messages {
+    padding: 1rem 0.75rem;
+    gap: 0.75rem;
+  }
 }
 
 .admin-message {
@@ -4763,6 +4888,14 @@ textarea:disabled {
   max-width: 60%;
   padding: 0.8rem 1rem;
   border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .admin-message-bubble {
+    max-width: 85%;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  }
 }
 
 .admin-message.user .admin-message-bubble {
@@ -4808,6 +4941,12 @@ textarea:disabled {
   border-top: 1px solid var(--border-color);
 }
 
+@media (max-width: 768px) {
+  .admin-input-area {
+    padding: 1rem;
+  }
+}
+
 .admin-input-error {
   margin-bottom: 1rem;
   padding: 0.75rem;
@@ -4823,6 +4962,13 @@ textarea:disabled {
   gap: 0.75rem;
 }
 
+@media (max-width: 768px) {
+  .admin-input-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 .admin-input-field {
   flex: 1;
   padding: 0.8rem;
@@ -4834,6 +4980,13 @@ textarea:disabled {
   font-size: 0.9rem;
   resize: vertical;
   min-height: 60px;
+}
+
+@media (max-width: 768px) {
+  .admin-input-field {
+    min-height: 50px;
+    font-size: 1rem;
+  }
 }
 
 .admin-input-field:focus {
@@ -4856,6 +5009,14 @@ textarea:disabled {
   transition: all 0.3s ease;
   font-family: 'JetBrains Mono', monospace;
   height: fit-content;
+}
+
+@media (max-width: 768px) {
+  .admin-send-btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
 }
 
 .admin-send-btn:hover:not(:disabled) {
@@ -4912,4 +5073,49 @@ textarea:disabled {
 .admin-spinner-text {
   color: var(--text-secondary);
   font-size: 0.95rem;
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .admin-sidebar-header {
+    padding: 0.75rem;
+  }
+
+  .admin-sidebar-title {
+    font-size: 1rem;
+  }
+
+  .admin-header {
+    padding: 0.75rem;
+  }
+
+  .admin-header-title {
+    font-size: 1rem;
+  }
+
+  .admin-messages {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .admin-input-area {
+    padding: 0.75rem;
+  }
+
+  .admin-input-form {
+    flex-direction: column;
+  }
+
+  .admin-message-bubble {
+    max-width: 90%;
+  }
+
+  .admin-logout-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .admin-send-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
 }
