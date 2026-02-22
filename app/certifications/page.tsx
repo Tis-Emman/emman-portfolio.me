@@ -40,6 +40,12 @@ export default function CertificationsPage() {
       img: "/images/certifications/associate-sql-certificate.png",
     },
     {
+      name: "Data Literacy Fundamentals",
+      provider: "DataCamp",
+      year: "2026",
+      img: "/images/certifications/data-literacy-certificate.png",
+    },
+    {
       name: "Intermediate Java",
       provider: "DataCamp",
       year: "2026",
