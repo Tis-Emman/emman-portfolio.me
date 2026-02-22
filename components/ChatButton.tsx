@@ -104,12 +104,21 @@ export default function ChatButton() {
         (payload: any) => {
           const newMessage = payload.new;
           setMessages((prev) => {
+            // Check if message already exists by ID or content
             const exists = prev.some(
               (m) =>
                 m.id === newMessage.id ||
                 (m.text === newMessage.content && m.sender === newMessage.sender)
             );
             if (exists) {
+              // If this is a real ID replacing a temp ID, update it
+              if (newMessage.sender === "user" && prev.some((m) => m.id?.startsWith('temp_') && m.text === newMessage.content)) {
+                return prev.map((m) => 
+                  m.id?.startsWith('temp_') && m.text === newMessage.content 
+                    ? { ...m, id: newMessage.id } 
+                    : m
+                );
+              }
               return prev;
             }
             return [
@@ -137,15 +146,25 @@ export default function ChatButton() {
 
         if (allMessages) {
           setMessages((prev) => {
-            // Create a set of existing message IDs and content pairs to avoid duplicates
-            const existingMessages = new Set(
+            // Create a set of existing messages (both by ID and by content+sender)
+            const existingIds = new Set(
               prev
-                .filter((m) => m.id) // Only messages with IDs
+                .filter((m) => m.id && !m.id.startsWith('temp_')) // Real IDs only
                 .map((m) => m.id)
             );
             
+            const existingContent = new Set(
+              prev.map((m) => `${m.sender}:${m.text}`) // Content signature
+            );
+            
             const newMessages = allMessages
-              .filter((m: any) => !existingMessages.has(m.id))
+              .filter((m: any) => {
+                // Skip if we already have this ID
+                if (m.id && existingIds.has(m.id)) return false;
+                // Skip if we already have this content
+                if (existingContent.has(`${m.sender}:${m.content}`)) return false;
+                return true;
+              })
               .map((m: any) => ({
                 text: m.content,
                 sender: m.sender,
@@ -153,8 +172,25 @@ export default function ChatButton() {
                 id: m.id,
               }));
 
-            if (newMessages.length > 0) {
-              return [...prev, ...newMessages];
+            // Replace temp IDs with real IDs for existing messages
+            if (newMessages.length > 0 || allMessages.length !== prev.length) {
+              const updatedMessages = prev.map((m) => {
+                if (m.id?.startsWith('temp_')) {
+                  // Find the real message with matching content
+                  const realMessage = allMessages.find(
+                    (msg: any) => msg.sender === m.sender && msg.content === m.text
+                  );
+                  if (realMessage) {
+                    return { ...m, id: realMessage.id };
+                  }
+                }
+                return m;
+              });
+              
+              if (newMessages.length > 0) {
+                return [...updatedMessages, ...newMessages];
+              }
+              return updatedMessages;
             }
             return prev;
           });
@@ -173,6 +209,7 @@ export default function ChatButton() {
   const handleSend = async () => {
     if (inputValue.trim() && !isLoading && sessionId && visitorId) {
       const userMessage = inputValue;
+      const tempId = `temp_${Date.now()}_${Math.random()}`; // Temporary ID to prevent duplicates
 
       setInputValue("");
       setIsLoading(true);
@@ -184,6 +221,7 @@ export default function ChatButton() {
           text: userMessage,
           sender: "user",
           timestamp: new Date(),
+          id: tempId, // Add temp ID for deduplication
         },
       ]);
 
