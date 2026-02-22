@@ -26,6 +26,8 @@ export default function ChatButton() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [visitorId, setVisitorId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
 
   // Initialize sessionId and visitorId on component mount
   useEffect(() => {
@@ -79,12 +81,23 @@ export default function ChatButton() {
   }, []);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (shouldAutoScroll) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Check if user is scrolled to bottom
+  const handleScroll = () => {
+    if (!messagesContainerRef.current) return;
+    
+    const { scrollHeight, scrollTop, clientHeight } = messagesContainerRef.current;
+    const isAtBottom = scrollHeight - scrollTop - clientHeight < 50; // 50px threshold
+    setShouldAutoScroll(isAtBottom);
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, shouldAutoScroll]);
 
   // Subscribe to new messages from admin AND poll for updates
   useEffect(() => {
@@ -300,7 +313,7 @@ export default function ChatButton() {
           </div>
 
           {/* Chat Messages */}
-          <div className="chat-messages">
+          <div className="chat-messages" ref={messagesContainerRef} onScroll={handleScroll}>
             {messages.map((msg, idx) => (
               <div key={idx} className={`chat-message ${msg.sender}`}>
                 {msg.sender === "admin" ? (
