@@ -67,6 +67,10 @@ export default function AdminDashboard() {
 
         const data = await response.json();
         setSessions(data.sessions);
+        // Auto-select the first session on load
+        if (data.sessions.length > 0 && !selectedSessionId) {
+          setSelectedSessionId(data.sessions[0].id);
+        }
       } catch (err) {
         console.error("Error fetching sessions:", err);
         setError("Failed to load chat sessions");
@@ -79,7 +83,7 @@ export default function AdminDashboard() {
     // Refresh every 5 seconds
     const interval = setInterval(fetchSessions, 5000);
     return () => clearInterval(interval);
-  }, [router]);
+  }, [router, selectedSessionId]);
 
   // Fetch messages for selected session
   useEffect(() => {
@@ -169,11 +173,26 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-dashboard">
+      {/* Backdrop overlay on mobile */}
+      {sidebarOpen && (
+        <div
+          className="admin-sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       {/* Sidebar */}
       <div className={`admin-sidebar ${sidebarOpen ? "mobile-open" : ""}`}>
         <div className="admin-sidebar-header">
           <h1 className="admin-sidebar-title">Admin Chat</h1>
           <div className="admin-sidebar-actions">
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="admin-sidebar-close-btn"
+              aria-label="Close conversations"
+            >
+              ✕
+            </button>
             <button
               onClick={() => router.push("/admin/logout")}
               className="admin-logout-btn"
