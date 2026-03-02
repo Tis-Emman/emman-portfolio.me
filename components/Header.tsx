@@ -93,7 +93,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* CV Not Available Popup */}
       <div className={`cv-popup-modal ${showCvPopup ? 'active' : ''}`}>
         <div className="modal-backdrop" onClick={() => setShowCvPopup(false)} />
         <div className="cv-popup-content">
