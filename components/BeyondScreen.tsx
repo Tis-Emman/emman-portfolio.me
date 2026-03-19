@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Target } from 'lucide-react';
+import Image from 'next/image';
 
 export default function BeyondScreen() {
   const scrollRef = useRef<HTMLDivElement>(null);
