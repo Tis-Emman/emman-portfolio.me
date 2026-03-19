@@ -6,6 +6,7 @@ import Certifications from '@/components/Certifications'
 import BeyondScreen from '@/components/BeyondScreen'
 import Experience from '@/components/Experience'
 import Projects from '@/components/Projects'
+import Recommendations from '@/components/Recommendations'
 import Contact from '@/components/Contact'
 import ScrollIndicator from '@/components/ScrollIndicator'
 import GitHubActivity from '@/components/GitHubActivity'
@@ -36,6 +37,7 @@ export default function Home() {
           <div className="right-column">
             <Experience />
             <Projects />
+            <Recommendations />
             <Contact />
           </div>
         </div>

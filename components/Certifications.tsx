@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Award } from "lucide-react";
+import allCertifications from "@/data/certifications";
+
+const PREVIEW_COUNT = 3;
 
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
@@ -14,18 +17,7 @@ export default function Certifications() {
     };
   }, [selectedCert]);
 
-  const certs = [
-    {
-      name: "AWS Cloud Practitioner Essentials",
-      provider: "AWS Skill Builder • 2026",
-      img: "/images/certifications/aws-certificate.png",
-    },
-    {
-      name: "Python Essentials 1",
-      provider: "CISCO • 2026",
-      img: "/images/certifications/python-essentials-1-certificate.png",
-    }
-  ];
+  const certs = allCertifications.slice(0, PREVIEW_COUNT);
 
   return (
     <div className="card">
@@ -45,7 +37,7 @@ export default function Certifications() {
             onClick={() => setSelectedCert(cert.img)}
           >
             <h4>{cert.name}</h4>
-            <p className="cert-provider">{cert.provider}</p>
+            <p className="cert-provider">{cert.provider} • {cert.year}</p>
           </div>
         ))}
       </div>

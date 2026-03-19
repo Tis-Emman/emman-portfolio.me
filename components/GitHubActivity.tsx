@@ -125,6 +125,16 @@ export default function GitHubActivity() {
       <div className="card-header">
         <Github size={20} className="card-header-icon" />
         GitHub Activity
+        <a
+          href="https://github.com/Tis-Emman"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="github-profile-link"
+        >
+          <Github size={13} />
+          Tis-Emman
+          <span className="github-profile-arrow">↗</span>
+        </a>
       </div>
 
       {/* Stats row */}
@@ -137,19 +147,18 @@ export default function GitHubActivity() {
 
       {/* Heatmap */}
       <div className="heatmap-wrapper">
-        {/* Month labels */}
+        {/* Month labels — same flex structure as the week grid for perfect alignment */}
         <div className="heatmap-months">
           <div className="heatmap-day-labels-spacer" />
           <div className="heatmap-month-track">
-            {monthPositions.map(({ label, col }) => (
-              <span
-                key={`${label}-${col}`}
-                className="heatmap-month-label"
-                style={{ gridColumnStart: col + 1 }}
-              >
-                {label}
-              </span>
-            ))}
+            {weeks.map((_, wi) => {
+              const label = monthPositions.find((p) => p.col === wi)?.label
+              return (
+                <div key={wi} className="heatmap-week">
+                  {label && <span className="heatmap-month-label">{label}</span>}
+                </div>
+              )
+            })}
           </div>
         </div>
 
