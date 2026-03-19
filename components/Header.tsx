@@ -51,7 +51,7 @@ export default function Header() {
             </p>
 
             <p className="tagline">
-              Aspiring Full Stack Developer | Backend Developer
+              Software Engineer | IT Student Freelancer | Full Stack Developer
             </p>
             <ThemeToggle />
             {/* Buttons */}

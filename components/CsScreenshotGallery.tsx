@@ -28,8 +28,9 @@ export default function CsScreenshotGallery({ screenshots, sectionTitle }: Props
             <Image
               src={src}
               alt={`${sectionTitle} screenshot ${si + 1}`}
-              width={800}
-              height={500}
+              width={1920}
+              height={1080}
+              quality={100}
               className="cs-screenshot-img"
             />
           </div>
