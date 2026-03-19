@@ -12,25 +12,23 @@ export default function Projects() {
       </div>
 
       <div className="projects-grid">
-            {/* Project Card 1: Cozy Crate E-Commerce */}
-            <div className="project-card">
+            {/* Project Card 1: Cogni-Lab */}
+            <Link href="/projects/cogni-lab" className="project-card">
               <Image
-                src="/images/projects/cozy-crate.png"
-                alt="Cozy Crate E-Commerce"
+                src="/images/projects/CogniLab.png"
+                alt="Cogni-Lab Information System"
                 width={600}
                 height={400}
                 className="project-image"
               />
               <div className="project-content">
-                <h3>Cozy Crate E-Commerce</h3>
+                <h3>Cogni-Lab Information System</h3>
                 <p className="project-description">
-                  A Java GUI Swing Program that uses SQLITE database for CRUD operations
+                  A comprehensive information system for a local laboratory.
                 </p>
-                <a href="https://github.com/Tis-Emman/Cozy_Crave_Ecommerce" className="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
+                <span className="project-link">View Case Study</span>
               </div>
-            </div>
+            </Link>
 
             {/* Project Card 2: E Tour Travels */}
             <div className="project-card">
