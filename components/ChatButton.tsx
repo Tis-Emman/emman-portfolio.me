@@ -15,11 +15,6 @@ interface Message {
 
 export default function ChatButton() {
   const pathname = usePathname();
-  
-  // Don't show chat widget on admin pages
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -304,6 +299,9 @@ export default function ChatButton() {
     }
   };
 
+  // Don't show chat widget on admin pages (after all hooks)
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <>
       <button
@@ -381,7 +379,7 @@ export default function ChatButton() {
               placeholder="Type a message..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSend()}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
               disabled={isLoading}
             />
             <button

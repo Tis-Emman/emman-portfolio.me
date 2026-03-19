@@ -8,6 +8,63 @@ import { useState, useEffect, useRef } from 'react'
 const PROJECTS_PER_PAGE = 4;
 const FADE_OUT_DURATION = 250;
 
+const projects = [
+  {
+    id: 1,
+    title: "Cogni-Lab Information System",
+    description: "A comprehensive information system for a local laboratory. Features user management, data tracking, and reporting tools to streamline laboratory operations.",
+    image: "/images/projects/cognilab.png",
+    technologies: ["Typescript", "Tailwind", "Supabase", "React"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 2,
+    title: "Cozy Crate E-Commerce",
+    description: "A Java GUI Swing Program that uses SQLITE database for CRUD operations. Full-featured e-commerce application with inventory management, shopping cart, and order processing.",
+    image: "/images/projects/cozy-crate.png",
+    technologies: ["Java", "Swing", "SQLite", "JDBC"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 3,
+    title: "EMEREN Inventory Management System",
+    description: "An inventory management system for a local business. Features product tracking, stock management, and reporting tools to streamline operations.",
+    image: "/images/projects/emeren_inventory.png",
+    technologies: ["Javascript", "Typescript", "Tailwind CSS", "Supabase"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 4,
+    title: "Sinervet VetHub",
+    description: "A comprehensive website for veterinary services at local town. Features appointment booking, pet records management, and service information for pet owners.",
+    image: "/images/projects/sinervet.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 5,
+    title: "Korean Express",
+    description: "A modern Korean grocery delivery platform offering authentic ingredients and fast, reliable service.",
+    image: "/images/projects/korean_express.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 6,
+    title: "E Tour Travels",
+    description: "A static website for our first year, first sem project. Beautiful travel booking website showcasing various destinations and tour packages with responsive design.",
+    image: "/images/projects/e-tour-travels.png",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    liveLink: "",
+    githubLink: ""
+  },
+]
+
 export default function ProjectsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -19,67 +76,6 @@ export default function ProjectsPage() {
       if (animTimeoutRef.current) clearTimeout(animTimeoutRef.current);
     };
   }, []);
-
-  const projects = [
-
-    {
-      id: 1,
-      title: "Cogni-Lab Information System",
-      description: "A comprehensive information system for a local laboratory. Features user management, data tracking, and reporting tools to streamline laboratory operations.",
-      image: "/images/projects/cogniLab.png",
-      technologies: ["Typescript", "Tailwind", "Supabase", "React"],
-      liveLink: "",
-      githubLink: ""
-    }
-    ,
-    {
-      id: 2,
-      title: "Cozy Crate E-Commerce",
-      description: "A Java GUI Swing Program that uses SQLITE database for CRUD operations. Full-featured e-commerce application with inventory management, shopping cart, and order processing.",
-      image: "/images/projects/cozy-crate.png",
-      technologies: ["Java", "Swing", "SQLite", "JDBC"],
-      liveLink: "",
-      githubLink: ""
-    },
-
-    {
-      id: 3,
-      title: "EMEREN Inventory Management System",
-      description: "An inventory management system for a local business. Features product tracking, stock management, and reporting tools to streamline operations.",
-      image: "/images/projects/emeren_inventory.png",
-      technologies: ["Javascript", "Typescript", "Tailwind CSS", "Supabase"],
-      liveLink: "",
-      githubLink: ""
-    },
-
-    {
-      id: 4,
-      title: "Sinervet VetHub",
-      description: "A comprehensive website for veterinary services at local town. Features appointment booking, pet records management, and service information for pet owners.",
-      image: "/images/projects/sinervet.png",
-      technologies: ["React", "Node.js", "MongoDB"],
-      liveLink: "",
-      githubLink: ""
-    },
-    {
-      id: 5,
-      title: "Korean Express",
-      description: "A modern Korean grocery delivery platform offering authentic ingredients and fast, reliable service.",
-      image: "/images/projects/korean_express.png",
-      technologies: ["React", "Node.js", "MongoDB"],
-      liveLink: "",
-      githubLink: ""
-    },
-        {
-      id: 6,
-      title: "E Tour Travels",
-      description: "A static website for our first year, first sem project. Beautiful travel booking website showcasing various destinations and tour packages with responsive design.",
-      image: "/images/projects/e-tour-travels.png",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      liveLink: "",
-      githubLink: ""
-    },
-  ]
 
   const usePagination = projects.length > 4;
   const totalPages = usePagination ? Math.ceil(projects.length / PROJECTS_PER_PAGE) : 1;

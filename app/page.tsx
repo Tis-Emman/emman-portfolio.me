@@ -6,9 +6,9 @@ import Certifications from '@/components/Certifications'
 import BeyondScreen from '@/components/BeyondScreen'
 import Experience from '@/components/Experience'
 import Projects from '@/components/Projects'
-import Recommendations from '@/components/Recommendations'
 import Contact from '@/components/Contact'
 import ScrollIndicator from '@/components/ScrollIndicator'
+import GitHubActivity from '@/components/GitHubActivity'
 
 export default function Home() {
   return (
@@ -16,7 +16,11 @@ export default function Home() {
       <ScrollIndicator />
 
       <Header />
-      
+
+      <div className="container">
+        <GitHubActivity />
+      </div>
+
       <div className="container">
         <div className="main-grid">
           {/* Left Column */}

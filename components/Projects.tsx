@@ -49,7 +49,7 @@ export default function Projects() {
                 <p className="project-description">
                   An inventory management system for a local business.
                 </p>
-                <a href="https://github.com/Tis-Emman/PetSineVet" className="project-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Tis-Emman/EMEREN-Inventory" className="project-link" target="_blank" rel="noopener noreferrer">
                   View Project
                 </a>
               </div>
