@@ -11,7 +11,7 @@ export default function Education() {
       </div>
 
       <div className="education-item">
-        <h3>BS in Information Technology</h3>
+        <h3>Bachelor of Science in Information Technology</h3>
         <p className="institution">STI College Baliuag</p>
         <p className="period">2024 - 2028</p>
       </div>
