@@ -44,13 +44,20 @@ function formatRelativeDate(dateStr: string): string {
 export default function GitHubActivity() {
   const [data, setData] = useState<ContributionData | null>(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null)
 
   useEffect(() => {
     fetch('/api/github/contributions')
       .then((r) => r.json())
-      .then((d) => setData(d))
-      .catch(() => setData(null))
+      .then((d) => {
+        if (d.error) {
+          setError(d.error)
+        } else {
+          setData(d)
+        }
+      })
+      .catch((e) => setError(String(e)))
       .finally(() => setLoading(false))
   }, [])
 
@@ -96,7 +103,19 @@ export default function GitHubActivity() {
     )
   }
 
-  if (!data || !data.days?.length) return null
+  if (error || !data || !data.days?.length) {
+    return (
+      <div className="github-activity-card card">
+        <div className="card-header">
+          <Github size={20} className="card-header-icon" />
+          GitHub Activity
+        </div>
+        <p className="github-error">
+          Could not load activity.{error ? ` (${error})` : ''}
+        </p>
+      </div>
+    )
+  }
 
   const weeks = buildWeeks(data.days)
   const monthPositions = getMonthPositions(weeks)

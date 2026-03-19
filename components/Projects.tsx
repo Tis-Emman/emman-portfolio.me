@@ -3,18 +3,15 @@ import Link from 'next/link'
 
 export default function Projects() {
   return (
-    <section className="projects-section">
-      <div className="container">
-        <div className="projects-container-wrapper">
-          <div className="projects-header">
-            <h2>Projects</h2>
-            <Link href="/projects" className="view-all">
-              View All
-              <span> →</span>
-            </Link>
-          </div>
-          
-          <div className="projects-grid">
+    <div className="card">
+      <div className="card-header">
+        <h2 style={{ fontSize: '1rem', fontWeight: 600, margin: 0 }}>Projects</h2>
+        <Link href="/projects" className="view-all">
+          View All →
+        </Link>
+      </div>
+
+      <div className="projects-grid">
             {/* Project Card 1: Cozy Crate E-Commerce */}
             <div className="project-card">
               <Image
@@ -94,9 +91,7 @@ export default function Projects() {
               </div>
             </div>
 
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
   )
 }
