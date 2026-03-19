@@ -13,7 +13,7 @@ const projects = [
     id: 1,
     title: "Cogni-Lab Information System",
     description: "A comprehensive information system for a local laboratory. Features user management, data tracking, and reporting tools to streamline laboratory operations.",
-    image: "/images/projects/cognilab.png",
+    image: "/images/projects/CogniLab.png",
     technologies: ["Typescript", "Tailwind", "Supabase", "React"],
     liveLink: "",
     githubLink: ""
