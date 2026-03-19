@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const recommendations = [
   {
@@ -37,7 +37,6 @@ export default function Recommendations() {
     }, 300);
   };              
 
-  const prev = () => goTo((current - 1 + recommendations.length) % recommendations.length, "left");
   const next = () => goTo((current + 1) % recommendations.length, "right");
 
   useEffect(() => {
@@ -70,10 +69,6 @@ export default function Recommendations() {
       </div>
 
       <div className="recommendation-footer">
-        <button className="rec-arrow" onClick={prev} aria-label="Previous">
-          <ChevronLeft size={14} />
-        </button>
-
         <div className="carousel-dots">
           {recommendations.map((_, i) => (
             <span
@@ -83,10 +78,6 @@ export default function Recommendations() {
             />
           ))}
         </div>
-
-        <button className="rec-arrow" onClick={next} aria-label="Next">
-          <ChevronRight size={14} />
-        </button>
       </div>
     </div>
   );
