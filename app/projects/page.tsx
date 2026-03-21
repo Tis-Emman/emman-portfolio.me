@@ -40,7 +40,7 @@ const projects = [
     id: 4,
     title: "Sinervet VetHub",
     description: "A comprehensive website for veterinary services at local town. Features appointment booking, pet records management, and service information for pet owners.",
-    image: "/images/projects/sinervet.png",
+    image: "/images/projects/sinervet-updated.png",
     technologies: ["React", "Node.js", "MongoDB"],
     liveLink: "",
     githubLink: ""

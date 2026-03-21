@@ -53,7 +53,7 @@ export default function Projects() {
             {/* Project Card 3: Sinervet VetHub */}
             <div className="project-card">
               <Image
-                src="/images/projects/sinervet.png"
+                src="/images/projects/sinervet-updated.png"
                 alt="Sinervet VetHub" 
                 width={600}
                 height={400}
