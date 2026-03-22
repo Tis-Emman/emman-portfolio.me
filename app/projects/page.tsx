@@ -29,10 +29,10 @@ const projects = [
   },
   {
     id: 3,
-    title: "EMEREN Inventory Management System",
-    description: "An inventory management system for a local business. Features product tracking, stock management, and reporting tools to streamline operations.",
-    image: "/images/projects/emeren_inventory.png",
-    technologies: ["Javascript", "Typescript", "Tailwind CSS", "Supabase"],
+    title: "ByteShift",
+    description: "A tech content platform for developers covering AI, dev tools, gaming culture, and productivity — with an interactive typing lab.",
+    image: "/images/projects/byteshift.png",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     liveLink: "",
     githubLink: ""
   },

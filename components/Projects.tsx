@@ -30,23 +30,20 @@ export default function Projects() {
               </div>
             </Link>
 
-            {/* Project Card 2: E Tour Travels */}
+            {/* Project Card 2: ByteShift */}
             <div className="project-card">
               <Image
-                src="/images/projects/emeren_inventory.png"
-                alt="EMEREN Inventory System" 
+                src="/images/projects/byteshift.png"
+                alt="ByteShift"
                 width={600}
                 height={400}
                 className="project-image"
               />
               <div className="project-content">
-                <h3>EMEREN Inventory System</h3>
+                <h3>ByteShift</h3>
                 <p className="project-description">
-                  An inventory management system for a local business.
+                  A tech content platform for developers covering AI, dev tools, gaming culture, and productivity — with an interactive typing lab.
                 </p>
-                <a href="https://github.com/Tis-Emman/EMEREN-Inventory" className="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
               </div>
             </div>
 
@@ -88,6 +85,7 @@ export default function Projects() {
                 </a>
               </div>
             </div>
+
 
       </div>
     </div>
