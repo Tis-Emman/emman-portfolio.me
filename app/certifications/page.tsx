@@ -46,6 +46,12 @@ export default function CertificationsPage() {
       img: "/images/certifications/data-literacy-certificate.png",
     },
     {
+      name: "AI Fundamentals",
+      provider: "DataCamp",
+      year: "2026",
+      img: "/images/certifications/ai-fundamentals-certificate.png",
+    },
+    {
       name: "Intermediate Java",
       provider: "DataCamp",
       year: "2026",
