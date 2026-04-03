@@ -65,6 +65,15 @@ const projects = [
   },
   {
     id: 7,
+    title: "Wivly Chat App",
+    description: "a full-stack, serverless real-time chat application built on AWS. It uses WebSocket API Gateway, Lambda, DynamoDB Streams, Cognito, S3, and CloudFront — all provisioned as code with AWS CDK.",
+    image: "/images/projects/wivly-chat-app.png",
+    technologies: ["React JS", "AWS", "Dynamo DB", "WebSocket API Gateway", "Lambda", "Cognito"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 8,
     title: "E Tour Travels",
     description: "A static website for our first year, first sem project. Beautiful travel booking website showcasing various destinations and tour packages with responsive design.",
     image: "/images/projects/e-tour-travels.png",

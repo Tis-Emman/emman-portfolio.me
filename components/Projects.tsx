@@ -50,20 +50,17 @@ export default function Projects() {
             {/* Project Card 3: Sinervet VetHub */}
             <div className="project-card">
               <Image
-                src="/images/projects/sinervet-updated.png"
-                alt="Sinervet VetHub" 
+                src="/images/projects/wivly-chat-app.png"
+                alt="Wivly Chat App" 
                 width={600}
                 height={400}
                 className="project-image"
               />
               <div className="project-content">
-                <h3>Sinervet VetHub</h3>
+                <h3>Wivly Chat App</h3>
                 <p className="project-description">
-                  A comprehensive website for veterinary services at local town. Features appointment booking and pet records.
+                  A full-stack, serverless real-time chat application built on AWS. It uses WebSocket API Gateway, Lambda, DynamoDB Streams, Cognito, S3, and CloudFront — all provisioned as code with AWS CDK.
                 </p>
-                <a href="https://github.com/Tis-Emman/PetSineVet" className="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
               </div>
             </div>
 
