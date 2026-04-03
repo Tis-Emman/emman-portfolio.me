@@ -56,6 +56,15 @@ const projects = [
   },
   {
     id: 6,
+    title: "Nocturnal Pulse",
+    description: "A budget tracking app for everyday uses. Simple and intuitive interface to help users manage their finances and track expenses effectively. ",
+    image: "/images/projects/nocturnal-pulse.png",
+    technologies: ["React Native", "Tailwind CSS"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
+    id: 7,
     title: "E Tour Travels",
     description: "A static website for our first year, first sem project. Beautiful travel booking website showcasing various destinations and tour packages with responsive design.",
     image: "/images/projects/e-tour-travels.png",

@@ -67,20 +67,21 @@ export default function Projects() {
               </div>
             </div>
 
+{/* Project Card 4: Nocturnal Pulse */}
              <div className="project-card">
               <Image
-                src="/images/projects/korean_express.png"
-                alt="E Tour Travels" 
+                src="/images/projects/nocturnal-pulse.png"
+                alt="Nocturnal Pulse" 
                 width={600}
                 height={400}
                 className="project-image"
               />
               <div className="project-content">
-                <h3>Korean Express</h3>
+                <h3>Nocturnal Pulse</h3>
                 <p className="project-description">
-                  A modern Korean grocery delivery platform offering authentic ingredients and fast, reliable service.
+                  A budget tracking app for everyday uses. Simple and intuitive interface to help users manage their finances and track expenses effectively.
                 </p>
-                <a href="https://github.com/Tis-Emman/KoreanExpress" className="project-link" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/Tis-Emman/NocturnalPulse" className="project-link" target="_blank" rel="noopener noreferrer">
                   View Project
                 </a>
               </div>
