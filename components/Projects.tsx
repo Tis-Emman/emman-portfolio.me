@@ -78,9 +78,6 @@ export default function Projects() {
                 <p className="project-description">
                   A budget tracking app for everyday uses. Simple and intuitive interface to help users manage their finances and track expenses effectively.
                 </p>
-                <a href="https://github.com/Tis-Emman/Nocturnal-Pulse" className="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
               </div>
             </div>
 
