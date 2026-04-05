@@ -20,15 +20,6 @@ const projects = [
   },
   {
     id: 2,
-    title: "Cozy Crate E-Commerce",
-    description: "A Java GUI Swing Program that uses SQLITE database for CRUD operations. Full-featured e-commerce application with inventory management, shopping cart, and order processing.",
-    image: "/images/projects/cozy-crate.png",
-    technologies: ["Java", "Swing", "SQLite", "JDBC"],
-    liveLink: "",
-    githubLink: ""
-  },
-  {
-    id: 3,
     title: "ByteShift",
     description: "A tech content platform for developers covering AI, dev tools, gaming culture, and productivity — with an interactive typing lab.",
     image: "/images/projects/byteshift.png",
@@ -37,25 +28,16 @@ const projects = [
     githubLink: ""
   },
   {
+    id: 3,
+    title: "Wivly Chat App",
+    description: "a full-stack, serverless real-time chat application built on AWS. It uses WebSocket API Gateway, Lambda, DynamoDB Streams, Cognito, S3, and CloudFront — all provisioned as code with AWS CDK.",
+    image: "/images/projects/wivly-chat-app.png",
+    technologies: ["React JS", "AWS", "Dynamo DB", "WebSocket API Gateway", "Lambda", "Cognito"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
     id: 4,
-    title: "Sinervet VetHub",
-    description: "A comprehensive website for veterinary services at local town. Features appointment booking, pet records management, and service information for pet owners.",
-    image: "/images/projects/sinervet-updated.png",
-    technologies: ["React", "Node.js", "MongoDB"],
-    liveLink: "",
-    githubLink: ""
-  },
-  {
-    id: 5,
-    title: "Korean Express",
-    description: "A modern Korean grocery delivery platform offering authentic ingredients and fast, reliable service.",
-    image: "/images/projects/korean_express.png",
-    technologies: ["React", "Node.js", "MongoDB"],
-    liveLink: "",
-    githubLink: ""
-  },
-  {
-    id: 6,
     title: "Nocturnal Pulse",
     description: "A budget tracking app for everyday uses. Simple and intuitive interface to help users manage their finances and track expenses effectively. ",
     image: "/images/projects/nocturnal-pulse.png",
@@ -64,11 +46,30 @@ const projects = [
     githubLink: ""
   },
   {
+    id: 5,
+    title: "Cozy Crate E-Commerce",
+    description: "A Java GUI Swing Program that uses SQLITE database for CRUD operations. Full-featured e-commerce application with inventory management, shopping cart, and order processing.",
+    image: "/images/projects/cozy-crate.png",
+    technologies: ["Java", "Swing", "SQLite", "JDBC"],
+    liveLink: "",
+    githubLink: ""
+  },
+  
+  {
+    id: 6,
+    title: "Sinervet VetHub",
+    description: "A comprehensive website for veterinary services at local town. Features appointment booking, pet records management, and service information for pet owners.",
+    image: "/images/projects/sinervet-updated.png",
+    technologies: ["React", "Node.js", "MongoDB"],
+    liveLink: "",
+    githubLink: ""
+  },
+  {
     id: 7,
-    title: "Wivly Chat App",
-    description: "a full-stack, serverless real-time chat application built on AWS. It uses WebSocket API Gateway, Lambda, DynamoDB Streams, Cognito, S3, and CloudFront — all provisioned as code with AWS CDK.",
-    image: "/images/projects/wivly-chat-app.png",
-    technologies: ["React JS", "AWS", "Dynamo DB", "WebSocket API Gateway", "Lambda", "Cognito"],
+    title: "Korean Express",
+    description: "A modern Korean grocery delivery platform offering authentic ingredients and fast, reliable service.",
+    image: "/images/projects/korean_express.png",
+    technologies: ["React", "Node.js", "MongoDB"],
     liveLink: "",
     githubLink: ""
   },
