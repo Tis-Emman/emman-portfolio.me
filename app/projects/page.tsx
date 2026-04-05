@@ -16,8 +16,8 @@ const projects = [
     description: "A comprehensive information system for a local laboratory. Features user management, data tracking, and reporting tools to streamline laboratory operations.",
     image: "/images/projects/CogniLab.png",
     technologies: ["Typescript", "Tailwind", "Supabase", "React"],
-    liveLink: "",
-    githubLink: ""
+    liveLink: "https://cogni-lab-lis.vercel.app/login",
+    githubLink: "https://github.com/Tis-Emman/CogniLab-LIS"
   },
   {
     id: 2,
@@ -25,8 +25,8 @@ const projects = [
     description: "A tech content platform for developers covering AI, dev tools, gaming culture, and productivity — with an interactive typing lab.",
     image: "/images/projects/byteshift.png",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
-    liveLink: "",
-    githubLink: ""
+    liveLink: "https://byteshift-pearl.vercel.app",
+    githubLink: "https://github.com/Tis-Emman/ByteShift"
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const projects = [
     image: "/images/projects/nocturnal-pulse.png",
     technologies: ["React Native", "Tailwind CSS"],
     liveLink: "",
-    githubLink: ""
+    githubLink: "https://github.com/Tis-Emman/Nocturnal-Pulse"
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ const projects = [
     image: "/images/projects/cozy-crate.png",
     technologies: ["Java", "Swing", "SQLite", "JDBC"],
     liveLink: "",
-    githubLink: ""
+    githubLink: "https://github.com/Tis-Emman/Cozy_Crate_Ecommerce"
   },
   
   {
@@ -63,7 +63,7 @@ const projects = [
     image: "/images/projects/sinervet-updated.png",
     technologies: ["React", "Node.js", "MongoDB"],
     liveLink: "",
-    githubLink: ""
+    githubLink: "https://github.com/Tis-Emman/PetSineVet"
   },
   {
     id: 7,
@@ -72,7 +72,7 @@ const projects = [
     image: "/images/projects/korean_express.png",
     technologies: ["React", "Node.js", "MongoDB"],
     liveLink: "",
-    githubLink: ""
+    githubLink: "https://github.com/Tis-Emman/KoreanExpress"
   },
   {
     id: 8,
