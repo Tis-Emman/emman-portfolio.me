@@ -5,7 +5,8 @@
       "WebSearch",
       "Bash(grep -n \"priority\\\\|loading=\" \"/e/Self Project/emman-portfolio/my-portfolio/components\"/*.tsx)",
       "Bash(xargs grep:*)",
-      "Bash(grep -n \"role=\" components/*.tsx)"
+      "Bash(grep -n \"role=\" components/*.tsx)",
+      "Bash(node -e ':*)"
     ]
   }
 }

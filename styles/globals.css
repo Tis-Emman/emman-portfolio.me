@@ -125,17 +125,7 @@ header .container {
   gap: 0.5rem;
 }
 
-.verified-badge {
-  width: 20px;
-  height: 20px;
-  background: var(--accent-cyan);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  color: var(--bg-primary);
-}
+
 
 .location {
   display: flex;
@@ -256,6 +246,7 @@ header .container {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.7;
+  font-family: var(--font-syne), sans-serif;
 }
 
 /* Education */
@@ -345,22 +336,44 @@ header .container {
   gap: 0.8rem;
 }
 
+.beyond-text {
+  margin-bottom: 1rem;
+}
+
+.beyond-scroll-wrapper {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.beyond-scroll-track {
+  display: flex;
+  gap: 0.8rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  overflow: hidden;
+  scroll-behavior: auto;
+}
+
 .hobby-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   height: 120px;
+  min-width: calc((100% - 1.6rem) / 3);
+  flex-shrink: 0;
   border: 1px solid var(--border-color);
 }
 
-.hobby-card img {
+.hobby-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.hobby-card:hover img {
+.hobby-card:hover .hobby-img {
   transform: scale(1.05);
 }
 
@@ -826,6 +839,7 @@ header .container {
 footer {
   text-align: center;
   padding: 2rem 0;
+  margin-top: 3rem;
   color: var(--text-secondary);
   font-size: 0.85rem;
   border-top: 1px solid var(--border-color);
@@ -1061,6 +1075,17 @@ footer {
   padding-left: 0.5rem;
 }
 
+.message-time {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  padding: 0 0.25rem;
+}
+
+.chat-message.user .message-time {
+  text-align: right;
+}
+
 .chat-message.admin .message-bubble {
   background: var(--success);
   color: #ffffff;
@@ -1151,8 +1176,8 @@ footer {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #000000;
-  color: #ffffff;
+  background: var(--text-primary);
+  color: var(--bg-primary);
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
@@ -1165,16 +1190,7 @@ footer {
 
 .chat-send-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.chat-send-btn:active {
-  transform: scale(0.95);
-}
-
-[data-theme="light"] .chat-send-btn {
-  background: #000000;
-  color: #ffffff;
+  opacity: 0.85;
 }
 
 .chat-send-btn:active {
@@ -5797,6 +5813,61 @@ textarea:disabled {
 
 .case-study-page {
   min-height: 100vh;
+}
+
+/* 404 Page */
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+}
+
+.not-found-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.not-found-code {
+  font-size: 7rem;
+  font-weight: 800;
+  font-family: var(--font-syne), sans-serif;
+  color: var(--border-color);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.not-found-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.not-found-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.not-found-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.not-found-btn:hover {
+  opacity: 0.85;
 }
 
 .case-study-topnav {

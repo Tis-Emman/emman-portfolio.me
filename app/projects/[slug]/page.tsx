@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import Footer from '@/components/Footer'
 import {
   ArrowLeft,
   ExternalLink,
@@ -38,6 +40,21 @@ const ICON_MAP: Record<string, LucideIcon> = {
 
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const project = getCaseStudy(slug)
+  if (!project) return { title: 'Project Not Found' }
+  return {
+    title: project.title,
+    description: project.tagline,
+    openGraph: {
+      title: `${project.title} | Emmanuel Dela Pena`,
+      description: project.tagline,
+      images: [{ url: project.thumbnail }],
+    },
+  }
 }
 
 export default async function CaseStudyPage({ params }: Props) {
@@ -190,10 +207,7 @@ export default async function CaseStudyPage({ params }: Props) {
         </main>
       </div>
 
-      <footer>
-        <p>&copy; 2026 Emmanuel Dela Pena. All Rights Reserved.</p>
-        <p>Developed in Baliuag City, Bulacan, Philippines</p>
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -10,6 +10,7 @@ import Recommendations from '@/components/Recommendations'
 import Contact from '@/components/Contact'
 import ScrollIndicator from '@/components/ScrollIndicator'
 import GitHubActivity from '@/components/GitHubActivity'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -43,10 +44,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer style={{marginTop: 50}}>
-        <p>&copy; 2026 Emmanuel P. Dela Pena. All Rights Reserved.</p>
-        <p>Developed in Baliuag City, Bulacan, Philippines</p>
-      </footer>
+      <Footer />
     </>
   )
   

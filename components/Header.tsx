@@ -24,16 +24,18 @@ export default function Header() {
                           
             <Image
               src="/images/profile_new.jpg"
-              alt="Profile"
+              alt="Emmanuel Dela Pena"
               width={175}
               height={175}
+              priority
               className={`profile-pic main ${hovered ? "hidden" : "visible"}`}
             />
             <Image
               src="/images/profile_back.jpg"
-              alt="Profile Hover"
+              alt="Emmanuel Dela Pena"
               width={175}
               height={175}
+              priority
               className={`profile-pic hover ${hovered ? "visible" : "hidden"}`}
             />
           </div>
@@ -68,6 +70,7 @@ export default function Header() {
                 href="https://calendly.com/emmandelapena755"
                 className="btn flex items-center gap-1"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Calendar className="w-4 h-4" />
                 Schedule a Call
@@ -77,6 +80,7 @@ export default function Header() {
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=emmandelapena755@gmail.com"
                 className="btn flex items-center gap-1"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Mail className="w-4 h-4" />
                 Send Email

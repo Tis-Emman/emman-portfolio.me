@@ -59,7 +59,7 @@ export default function Projects() {
               <div className="project-content">
                 <h3>Wivly Chat App</h3>
                 <p className="project-description">
-                  A full-stack, serverless real-time chat application built on AWS. It uses WebSocket API Gateway, Lambda, DynamoDB Streams, Cognito, S3, and CloudFront — all provisioned as code with AWS CDK.
+                  A full-stack, serverless real-time chat application built on AWS. 
                 </p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function Projects() {
               <div className="project-content">
                 <h3>Nocturnal Pulse</h3>
                 <p className="project-description">
-                  A budget tracking app for everyday uses. Simple and intuitive interface to help users manage their finances and track expenses effectively.
+                  A budget tracking app for everyday uses.
                 </p>
               </div>
             </div>

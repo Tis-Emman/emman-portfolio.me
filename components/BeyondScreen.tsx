@@ -19,11 +19,9 @@ export default function BeyondScreen() {
     const scroll = () => {
       if (!isPaused) {
         scrollAmount += scrollSpeed;
-        
         if (scrollAmount >= scrollContainer.scrollWidth / 2) {
           scrollAmount = 0;
         }
-        
         scrollContainer.scrollLeft = scrollAmount;
       }
       animationFrameRef.current = requestAnimationFrame(scroll);
@@ -44,7 +42,7 @@ export default function BeyondScreen() {
     { src: '/images/hobbies/codefest-cert.jpeg', alt: 'Dance & Travel' },
     { src: '/images/hobbies/hobby_1.png', alt: 'Muay Thai' },
     { src: '/images/hobbies/hobby_2.png', alt: 'Gym & Fitness' },
-    { src: '/images/hobbies/codefest-cert.jpeg', alt: 'Dance & Travel' }
+    { src: '/images/hobbies/codefest-cert.jpeg', alt: 'Dance & Travel' },
   ];
 
   return (
@@ -54,47 +52,24 @@ export default function BeyondScreen() {
         Beyond the Screen
       </div>
 
-      <p className="about-text" style={{ marginBottom: '1rem' }}>
+      <p className="about-text beyond-text">
         Outside of work, I recharge by playing guitar, coding personal projects, and cooking. I also stay active with walks and exercise, which keeps me creative, curious, and balanced.
       </p>
 
-      <div 
-        style={{ 
-          marginLeft: '-1.5rem',
-          marginRight: '-1.5rem',
-          overflow: 'hidden',
-          position: 'relative'
-        }}
-        onMouseEnter={() => {
-          setIsPaused(true);
-        }}
-        onMouseLeave={() => {
-          setIsPaused(false);
-        }}
+      <div
+        className="beyond-scroll-wrapper"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
-        <div 
-          ref={scrollRef}
-          style={{
-            display: 'flex',
-            gap: '0.8rem',
-            paddingLeft: '1.5rem',
-            paddingRight: '1.5rem',
-            overflow: 'hidden',
-            scrollBehavior: 'auto'
-          }}
-        >
+        <div ref={scrollRef} className="beyond-scroll-track">
           {hobbies.map((hobby, index) => (
-            <div 
-              key={index} 
-              className="hobby-card"
-              style={{
-                minWidth: 'calc((100% - 1.6rem) / 3)',
-                flexShrink: 0
-              }}
-            >
-              <img
+            <div key={index} className="hobby-card">
+              <Image
                 src={hobby.src}
                 alt={hobby.alt}
+                width={300}
+                height={200}
+                className="hobby-img"
               />
             </div>
           ))}

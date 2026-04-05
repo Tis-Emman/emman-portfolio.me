@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ExternalLink, Github } from 'lucide-react'
+import Footer from '@/components/Footer'
 import { useState, useEffect, useRef } from 'react' 
 
 const PROJECTS_PER_PAGE = 4;
@@ -235,11 +236,7 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer>
-        <p>&copy; 2026 Emmanuel Dela Pena. All Rights Reserved.</p>
-        <p>Developed in Baliuag City, Bulacan, Philippines</p>
-      </footer>
+      <Footer />
     </div>
   )
 }
