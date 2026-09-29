@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Emmanuel Dela Pena | Full Stack Developer',
-    description: 'BSIT student & full stack developer from Baliuag, Bulacan.',
+    description: 'BSIT student & full stack developer from Baliuag City, Bulacan.',
     images: ['/images/profile_new.jpg'],
   },
 }
